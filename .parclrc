@@ -1,0 +1,4 @@
+{
+    "entries": "public/js/index.js",
+    "outdir":"public/js"
+}

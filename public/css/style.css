@@ -1,0 +1,44 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+  margin: 0;
+}
+html {
+  font-size: 10px;
+}
+body {
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+.overflow {
+  overflow: hidden;
+}
+.mainWrapper{
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+.mainContainer{
+  display:grid;
+  max-width: 1920;
+  max-height: 960;
+  grid-template-rows: repeat(3, 320px);
+  grid-template-columns: repeat(3,640px);
+  border:solid;
+}

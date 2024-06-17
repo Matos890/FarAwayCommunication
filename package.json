@@ -1,0 +1,25 @@
+{
+  "name": "history_of_communication",
+  "version": "1.0.0",
+  "description": "communication project",
+  "main": "app.js",
+  "target": {
+    "main": "false"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "watch:js": "parcel serve ./public/js/index.js --dist-dir ./public/js/bundled"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.3",
+    "parcel": "^2.12.0"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "gsap": "^3.12.5"
+  }
+}
