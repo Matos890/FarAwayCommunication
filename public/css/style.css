@@ -15,7 +15,7 @@ html {
 body {
   line-height: 1.5;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 img,
@@ -26,6 +26,19 @@ picture {
 .overflow {
   overflow: hidden;
 }
+.sections{
+  display:flex;
+}
+.myCanvas{
+  position: absolute;
+  top:0;
+  left:0;
+  height:100%;
+}
+.mainSiteWrapper{
+  display:flex;
+
+}
 .mainWrapper{
   display: flex;
   flex-direction: row;
@@ -33,12 +46,19 @@ picture {
   width: 100vw;
   align-items: center;
   justify-content: center;
+  position: absolute;
 }
 .mainContainer{
   display:grid;
   max-width: 1920;
   max-height: 960;
-  grid-template-rows: repeat(3, 320px);
-  grid-template-columns: repeat(3,640px);
+  grid-template-rows: repeat(3, 400px);
+  grid-template-columns: repeat(3,800px);
   border:solid;
+}
+.frame{
+  width:20vw;
+  height:30vh;
+  border:solid;
+  flex-shrink: 0;
 }
