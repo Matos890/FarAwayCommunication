@@ -1,6 +1,35 @@
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 const canvas = document.getElementById("myCanvas");
-const frame = document.querySelectorAll(".frame");
+const frame = document.querySelectorAll("[class^='frame']");
+const frame1 = document.querySelector('.frame1');
+const ctx = canvas.getContext("2d");
 
+ctx.globalCompositeOperation = "source-over";
+
+const imageSources = [
+  "/img/Emblemata_1624.jpg",
+  "/img/huntersInTheSnow.jpg",
+  "/img/Bruegel_portrait.jpg",
+];
+
+const images = [];
+
+function preloadImages(sources, callback) {
+  let loadedImages = 0;
+  sources.forEach((src, index) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => {
+      loadedImages++;
+      if (loadedImages === sources.length) {
+        callback();
+      }
+    };
+    images[index] = img;
+  });
+}
 
 function getDimension() {
   let canvasX = canvas.getBoundingClientRect().left;
@@ -10,36 +39,35 @@ function getDimension() {
   let frameWidth = [];
   let frameHeight = [];
   frame.forEach((frame, i) => {
-    frameX.push(frame.getBoundingClientRect().left - canvasX);
-    frameY.push(frame.getBoundingClientRect().top - canvasY);
+    let rect = frame.getBoundingClientRect();
+    frameX.push(rect.left - canvasX);
+    frameY.push(rect.top - canvasY);
     frameWidth.push(frame.offsetWidth);
     frameHeight.push(frame.offsetHeight);
-    console.log(frameX, frameY, frameHeight, frameWidth);
-    console.log(i);
   });
   return { frameX, frameY, frameWidth, frameHeight };
 }
 
-const ctx = canvas.getContext("2d");
-const images = [
-  "/img/huntersInTheSnow.jpg",
-  "/img/Bruegel_portrait.jpg",
-  "/img/Emblemata_1624.jpg",
-];
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const { frameX, frameY, frameWidth, frameHeight } = getDimension();
-  images.forEach((image, i) => {
-    const imgObj = new Image();
-    imgObj.src = image;
-    imgObj.width = frameWidth[i];
-    imgObj.height = frameHeight[i];
-    imgObj.onload = function () {
-      ctx.drawImage(imgObj, frameX[i], frameY[i], imgObj.width, imgObj.height);
-      console.log(imgObj.src);
-    };
+  images.forEach((imgObj, i) => {
+    ctx.drawImage(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i]);
   });
 }
 
-window.addEventListener("load", draw);
-window.addEventListener("resize", draw);
+preloadImages(imageSources, () => {
+  window.addEventListener("resize", draw);
+  window.addEventListener("load", draw);
+
+  gsap.to(frame1, {
+    marginLeft: 200,
+    duration: 2,
+    onUpdate: draw,
+    scrollTrigger:{
+      trigger:frame1,
+      markers:true,
+
+    }
+  });
+});
