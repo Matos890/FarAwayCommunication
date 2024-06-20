@@ -589,6 +589,7 @@ var _gsap = require("gsap");
 var _gsapDefault = parcelHelpers.interopDefault(_gsap);
 var _all = require("gsap/all");
 (0, _gsapDefault.default).registerPlugin((0, _all.ScrollTrigger));
+const cover = require("d2847929e4f80a5f");
 const canvas = document.getElementById("myCanvas");
 const frame = document.querySelectorAll("[class^='frame']");
 const frame1 = document.querySelector(".frame1");
@@ -637,24 +638,26 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const { frameX, frameY, frameWidth, frameHeight } = getDimension();
     images.forEach((imgObj, i)=>{
-        ctx.drawImage(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i]);
+        cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
+            mode: "cover"
+        }).zoom(0.6).pan(0.7, 0.3).render(ctx);
     });
 }
 preloadImages(imageSources, ()=>{
     window.addEventListener("resize", draw);
     window.addEventListener("load", draw);
-    (0, _gsapDefault.default).to(frame1, {
-        marginLeft: 200,
-        duration: 2,
-        onUpdate: draw,
-        scrollTrigger: {
-            trigger: frame1,
-            markers: true
-        }
-    });
+// gsap.to(frame1, {
+//   marginLeft: 200,
+//   duration: 2,
+//   onUpdate: draw,
+//   scrollTrigger:{
+//     trigger:frame1,
+//     markers:true,
+//   }
+// });
 });
 
-},{"gsap":"fPSuC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","gsap/all":"3UJRo"}],"fPSuC":[function(require,module,exports) {
+},{"gsap":"fPSuC","gsap/all":"3UJRo","d2847929e4f80a5f":"6rkt6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPSuC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "gsap", ()=>gsapWithCSS);
@@ -7019,6 +7022,99 @@ ScrollTrigger.core = {
 };
 _getGSAP() && gsap.registerPlugin(ScrollTrigger);
 
-},{"./Observer.js":"aAWxM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["kx4kz","f2QDv"], "f2QDv", "parcelRequired091")
+},{"./Observer.js":"aAWxM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6rkt6":[function(require,module,exports) {
+class Cover {
+    /**
+   * Provides a mechanism to draw an image in canvas such that it will cover the
+   * area provided exactly.
+   *
+   * @param {Canvas.Image} img the image to render
+   * @param {number} x offset x coordinate on the canvas
+   * @param {number} y offset y coordinate on the canvas
+   * @param {number} width width to fit to on the canvas
+   * @param {number} height height to fit to on the canvas
+   * @returns {Cover}
+   */ constructor(img, x, y, width, height){
+        const ir = img.width / img.height;
+        const r = width / height;
+        this.img = img;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.bounds = [
+            {
+                width: img.width,
+                height: img.height,
+                sx: 0,
+                sy: 0
+            }
+        ];
+        this.sw = ir < r ? img.width : img.height * r;
+        this.sh = ir < r ? img.width / r : img.height;
+        this.pan(0.5, 0.5);
+    }
+    /**
+   * Doesn't actually crop the input image but does redefine the bounds of the
+   * image for the sake of panning. ie. after a crop, the pan cx and cy will
+   * be with regard to the currently defined area rather than the whole image
+   * or previously cropped area.
+   *
+   * @returns {Cover}
+   */ crop() {
+        const { sw: width, sh: height, sx, sy } = this;
+        this.bounds.push({
+            width,
+            height,
+            sx,
+            sy
+        });
+        return this;
+    }
+    /**
+   * Change the center point of the image.
+   *
+   * @param {number} cx value between 0 and 1 representing the left or right
+   *   side of the image bounds. The bounds will be the whole image or the
+   *   defined source area at the time of the last crop().
+   * @param {number} cy value between 0 and 1 representing the top or the
+   *   bottom of the image bounds.
+   * @returns {Cover}
+   */ pan(cx, cy) {
+        if (cx < 0 || cx > 1) throw new Error("make sure 0 < cx < 1 ");
+        if (cy < 0 || cy > 1) throw new Error("make sure 0 < cy < 1 ");
+        const { width, height, sx, sy } = this.bounds[this.bounds.length - 1];
+        this.sx = sx + (width - this.sw) * cx;
+        this.sy = sy + (height - this.sh) * cy;
+        return this;
+    }
+    /**
+   * Zoom in at the current location.
+   *
+   * @param {number} factor how much to zoom in by (>0).
+   * @returns {Cover}
+   */ zoom(factor) {
+        if (factor <= 0) throw new Error("zoom not > 0");
+        this.sx += (this.sw - this.sw / factor) / 2;
+        this.sy += (this.sh - this.sh / factor) / 2;
+        this.sw /= factor;
+        this.sh /= factor;
+        return this;
+    }
+    /**
+   * Render to the provided context.
+   *
+   * @param {CanvasRenderingContext2D} ctx canvas context to render to
+   * @returns {Cover}
+   */ render(ctx) {
+        ctx.drawImage(this.img, this.sx, this.sy, this.sw, this.sh, this.x, this.y, this.width, this.height); // destination
+        return this;
+    }
+}
+module.exports = (img, x, y, width, height)=>{
+    return new Cover(img, x, y, width, height);
+};
+
+},{}]},["kx4kz","f2QDv"], "f2QDv", "parcelRequired091")
 
 //# sourceMappingURL=index.js.map

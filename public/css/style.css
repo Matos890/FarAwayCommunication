@@ -43,26 +43,30 @@ picture {
   display: flex;
   flex-direction: row;
   height: 100vh;
-  width: 100vw;
+  width: 300vw;
   align-items: center;
   justify-content: start;
   position: absolute;
 }
 .containerFrame1 {
-  grid-column: 1;
   display: flex;
   flex-direction: row;
   position: relative;
+  height: 100vh;
+}
+.controlTextBookMark{
+  margin-left:2vw;
+  margin-right:2vw;
+  height: 80%;
 }
 .Image-01 {
-  margin-left: -40vw;
-  font-size: 1.29vh;
-}
+display: flex;}
 .containerFrame2 {
   display: flex;
   flex-direction: row;
   font-size: 1.29vh;
   grid-column: 2;
+  margin-right: 3vw;
 }
 .containerFrame3 {
   display: flex;
@@ -71,39 +75,51 @@ picture {
   grid-column: 3;
   position: relative;
 }
-.mainContainer {
+
+/* .mainContainer {
   display: grid;
   grid-template-rows: repeat(3, auto);
   grid-template-columns: repeat(3, auto);
   max-height: 100vh;
   border: solid red;
-}
-
+} */
+ .mainContainer{
+  display: flex;
+ width: 250vw;
+ height: 100vh;
+ border: solid red;
+ position: relative;
+ }
 .overlapper {
-  background-color: #d0c8a4;
   position: absolute;
-  width: 100vw;
+  width: 48rem;
   height: 100vh;
-  z-index: 0;
-  right: -27vw;
+  border:solid blue;
+  z-index: 3;
 }
 .textBookmark {
   position: absolute;
   font-size: 2vh;
+  height: inherit;
   z-index: 3;
   display: flex;
   width: inherit;
   align-items: center;
   justify-content: center;
 }
+.Image-01{
+  margin-top:-48%;
+  height:100%;
+}
 .frame1 {
-  height: 100vh;
-  aspect-ratio: 1.42;
+  height: 200vh;
+  aspect-ratio: 0.25;
   border: solid;
+  top:0;
 }
 .frame2 {
-  height: 25vh;
-  aspect-ratio: 0.79;
+  height: 200vh;
+  aspect-ratio: 0.25;
   border: solid;
 }
 .frame3 {

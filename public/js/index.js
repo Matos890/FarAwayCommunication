@@ -1,9 +1,10 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
+const cover = require("canvas-image-cover");
 const canvas = document.getElementById("myCanvas");
 const frame = document.querySelectorAll("[class^='frame']");
-const frame1 = document.querySelector('.frame1');
+const frame1 = document.querySelector(".frame1");
 const ctx = canvas.getContext("2d");
 
 ctx.globalCompositeOperation = "source-over";
@@ -52,7 +53,10 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const { frameX, frameY, frameWidth, frameHeight } = getDimension();
   images.forEach((imgObj, i) => {
-    ctx.drawImage(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i]);
+      cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
+        mode:'cover'
+      }).zoom(0.6)
+        .pan(0.7,0.3).render(ctx)
   });
 }
 
@@ -60,14 +64,14 @@ preloadImages(imageSources, () => {
   window.addEventListener("resize", draw);
   window.addEventListener("load", draw);
 
-  gsap.to(frame1, {
-    marginLeft: 200,
-    duration: 2,
-    onUpdate: draw,
-    scrollTrigger:{
-      trigger:frame1,
-      markers:true,
+  // gsap.to(frame1, {
+  //   marginLeft: 200,
+  //   duration: 2,
+  //   onUpdate: draw,
+  //   scrollTrigger:{
+  //     trigger:frame1,
+  //     markers:true,
 
-    }
-  });
+  //   }
+  // });
 });
