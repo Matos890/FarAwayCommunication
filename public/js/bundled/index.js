@@ -595,14 +595,16 @@ const canvas1 = document.getElementById("myCanvas1");
 const frame = document.querySelectorAll("[class^='frame']");
 const frame1 = document.querySelector(".frame1");
 const ctx = canvas.getContext("2d");
-const ctx1 = canvas.getContext("2d");
+const ctx1 = canvas1.getContext("2d");
 ctx.globalCompositeOperation = "source-over";
 const imageSources = [
     "/img/Emblemata_1624.jpg",
     "/img/chappe.png",
     "/img/chappe.png",
-    "/img/administrative_francia.png"
+    "/img/administrative_francia.png",
+    "/img/chappebackground.png"
 ];
+const imageSources1 = [];
 const images = [];
 function preloadImages(sources, callback) {
     let loadedImages = 0;
@@ -638,15 +640,21 @@ function getDimension() {
     };
 }
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const { frameX, frameY, frameWidth, frameHeight } = getDimension();
-    images.forEach((imgObj, i)=>{
-        if (i === 0) cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
-            mode: "cover"
-        }).zoom(0.6).pan(0.7, 0.3).render(ctx);
-        else ctx.drawImage(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i]);
-        console.log(imgObj.src);
-    });
+    {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+        const { frameX, frameY, frameWidth, frameHeight } = getDimension();
+        images.forEach((imgObj, i)=>{
+            if (imgObj.src.includes("background")) {
+                ctx1.globalAlpha = 0.2;
+                ctx1.drawImage(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i]);
+            } else if (i === 0) cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
+                mode: "cover"
+            }).zoom(0.6).pan(0.7, 0.3).render(ctx);
+            else ctx.drawImage(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i]);
+            console.log(imgObj.src);
+        });
+    }
 }
 preloadImages(imageSources, ()=>{
     window.addEventListener("resize", draw);
@@ -660,6 +668,21 @@ preloadImages(imageSources, ()=>{
 //     markers:true,
 //   }
 // });
+});
+//// SCROLLER
+const sections = (0, _gsapDefault.default).utils.toArray(".mainWrapper scroller ");
+let scrollTween = (0, _gsapDefault.default).to(".mainWrapper", {
+    xPercent: 100 * (sections.length - 1),
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".scroller",
+        pin: true,
+        scrub: true,
+        pinSpacing: false,
+        markers: true,
+        start: "center center",
+        end: "+=3000"
+    }
 });
 
 },{"gsap":"fPSuC","gsap/all":"3UJRo","d2847929e4f80a5f":"6rkt6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPSuC":[function(require,module,exports) {

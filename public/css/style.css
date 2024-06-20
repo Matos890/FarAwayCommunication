@@ -12,11 +12,12 @@ picture {
 html {
   font-size: 10px;
   background-color: #d0c8a4;
+  height: 100vh;
 }
 body {
   line-height: 1.5;
-  min-height: 100vh;
-  overflow-y: hidden !important;
+ height: 100vh;
+  overflow-x: hidden !important;
 }
 .libre-baskerville-regular {
   font-family: "Libre Baskerville", serif;
@@ -49,6 +50,12 @@ picture {
   top: 0;
   left: 0;
   z-index: 0;
+}
+#myCanvas1{
+  z-index:-1;
+  position: absolute;
+  top:0;
+  left:0;
 }
 .mainWrapper {
   display: flex;
@@ -124,10 +131,12 @@ picture {
   align-items: center;
   justify-content: space-around;
   height: 200vh;
+  overflow-y: hidden;
  color:#333333; 
   font-size: 1.9vh;
   text-wrap: wrap;
   font-family: "libre baskerville";
+  overflow-y: hidden;
 }
 .p-01{
 
@@ -146,12 +155,14 @@ p {
   flex-direction: row;
   font-size: 1.29vh;
   grid-column: 2;
+  overflow-y: hidden;
 }
 .containerFrame3 {
   display: flex;
   flex-direction: row;
   font-size: 1.29vh;
   position: relative;
+  overflow-y: hidden;
 }
 
 .frame2 {
@@ -172,4 +183,12 @@ p {
 .p-03{
   aspect-ratio: 1;
   border:solid;
+}
+/* background */
+.background{
+  position:absolute;
+  aspect-ratio: 1.48;
+  height:100vh;
+  opacity:0.21;
+  
 }
