@@ -3,16 +3,19 @@ import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 const cover = require("canvas-image-cover");
 const canvas = document.getElementById("myCanvas");
+const canvas1 = document.getElementById("myCanvas1");
 const frame = document.querySelectorAll("[class^='frame']");
 const frame1 = document.querySelector(".frame1");
 const ctx = canvas.getContext("2d");
+const ctx1 = canvas.getContext("2d");
 
 ctx.globalCompositeOperation = "source-over";
 
 const imageSources = [
   "/img/Emblemata_1624.jpg",
-  "/img/huntersInTheSnow.jpg",
-  "/img/Bruegel_portrait.jpg",
+  "/img/chappe.png",
+  "/img/chappe.png",
+  "/img/administrative_francia.png",
 ];
 
 const images = [];
@@ -53,10 +56,23 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const { frameX, frameY, frameWidth, frameHeight } = getDimension();
   images.forEach((imgObj, i) => {
+    if (i === 0) {
       cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
-        mode:'cover'
-      }).zoom(0.6)
-        .pan(0.7,0.3).render(ctx)
+        mode: "cover",
+      })
+        .zoom(0.6)
+        .pan(0.7, 0.3)
+        .render(ctx);
+    } else {
+      ctx.drawImage(
+        imgObj,
+        frameX[i],
+        frameY[i],
+        frameWidth[i],
+        frameHeight[i]
+      );
+    }
+    console.log(imgObj.src);
   });
 }
 
