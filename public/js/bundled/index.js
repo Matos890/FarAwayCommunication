@@ -641,6 +641,12 @@ function getDimension() {
 }
 function draw() {
     {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        canvas.setAttribute("width", screenWidth);
+        canvas.setAttribute("height", screenHeight);
+        canvas1.setAttribute("width", screenWidth);
+        canvas1.setAttribute("height", screenHeight);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
         const { frameX, frameY, frameWidth, frameHeight } = getDimension();
@@ -650,39 +656,47 @@ function draw() {
                 ctx1.drawImage(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i]);
             } else if (i === 0) cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
                 mode: "cover"
-            }).zoom(0.6).pan(0.7, 0.3).render(ctx);
+            }).zoom(1.5).pan(0.7, 0).render(ctx);
             else ctx.drawImage(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i]);
-            console.log(imgObj.src);
         });
     }
+}
+function updateCanvas() {
+    draw();
+    requestAnimationFrame(updateCanvas);
 }
 preloadImages(imageSources, ()=>{
     window.addEventListener("resize", draw);
     window.addEventListener("load", draw);
-// gsap.to(frame1, {
-//   marginLeft: 200,
-//   duration: 2,
-//   onUpdate: draw,
-//   scrollTrigger:{
-//     trigger:frame1,
-//     markers:true,
-//   }
-// });
-});
-//// SCROLLER
-const sections = (0, _gsapDefault.default).utils.toArray(".mainWrapper scroller ");
-let scrollTween = (0, _gsapDefault.default).to(".mainWrapper", {
-    xPercent: 100 * (sections.length - 1),
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".scroller",
-        pin: true,
-        scrub: true,
-        pinSpacing: false,
-        markers: true,
-        start: "center center",
-        end: "+=3000"
-    }
+    // gsap.to(frame1, {
+    //   marginLeft: 200,
+    //   duration: 2,
+    //   onUpdate: draw,
+    //   scrollTrigger:{
+    //     trigger:frame1,
+    //     markers:true,
+    //   }
+    // });
+    const sections = (0, _gsapDefault.default).utils.toArray(".scroller ");
+    // create the scrollSmoother before your scrollTriggers
+    let scrollTween = (0, _gsapDefault.default).to(sections, {
+        xPercent: -100 * (sections.length - 1),
+        duration: 5,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".sectioni",
+            pin: true,
+            scrub: 3,
+            pinSpacing: false,
+            markers: true,
+            start: "center center",
+            end: "+=8000",
+            onUpdate: ()=>{
+                requestAnimationFrame(draw);
+            }
+        }
+    });
+    requestAnimationFrame(updateCanvas);
 });
 
 },{"gsap":"fPSuC","gsap/all":"3UJRo","d2847929e4f80a5f":"6rkt6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPSuC":[function(require,module,exports) {

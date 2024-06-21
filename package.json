@@ -21,6 +21,7 @@
     "canvas-image-cover": "^2.0.2",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "gsap": "^3.12.5"
+    "gsap": "^3.12.5",
+    "locomotive-scroll": "^4.1.4"
   }
 }

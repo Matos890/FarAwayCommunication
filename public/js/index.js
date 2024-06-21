@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger );
 const cover = require("canvas-image-cover");
 const canvas = document.getElementById("myCanvas");
 const canvas1 = document.getElementById("myCanvas1");
@@ -8,7 +8,6 @@ const frame = document.querySelectorAll("[class^='frame']");
 const frame1 = document.querySelector(".frame1");
 const ctx = canvas.getContext("2d");
 const ctx1 = canvas1.getContext("2d");
-
 ctx.globalCompositeOperation = "source-over";
 
 const imageSources = [
@@ -56,6 +55,13 @@ function getDimension() {
 
 function draw() {
   {
+    
+const screenWidth = window.innerWidth;
+const screenHeight = window.innerHeight;
+canvas.setAttribute("width", screenWidth)
+canvas.setAttribute("height", screenHeight)
+canvas1.setAttribute("width", screenWidth)
+canvas1.setAttribute("height", screenHeight)
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
     const { frameX, frameY, frameWidth, frameHeight } = getDimension();
@@ -73,8 +79,8 @@ function draw() {
         cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
           mode: "cover",
         })
-          .zoom(0.6)
-          .pan(0.7, 0.3)
+          .zoom(1.5)
+          .pan(0.7, 0)
           .render(ctx);
       } else {
         ctx.drawImage(
@@ -85,9 +91,12 @@ function draw() {
           frameHeight[i]
         );
       }
-      console.log(imgObj.src);
     });
   }
+}
+function updateCanvas(){
+  draw(); 
+  requestAnimationFrame(updateCanvas)
 }
 
 preloadImages(imageSources, () => {
@@ -104,20 +113,25 @@ preloadImages(imageSources, () => {
 
   //   }
   // });
-});
-//// SCROLLER
-const sections = gsap.utils.toArray(".mainWrapper scroller ");
 
-let scrollTween = gsap.to('.mainWrapper', {
-  xPercent: 100 * (sections.length - 1),
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".scroller",
-    pin:true,
-    scrub:true,
-    pinSpacing:false,
-    markers:true,
-    start:'center center',
-    end: "+=3000",
-  },
+  const sections = gsap.utils.toArray(".scroller ");
+// create the scrollSmoother before your scrollTriggers
+  let scrollTween = gsap.to(sections, {
+    xPercent: -100 * (sections.length - 1),
+    duration: 5,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".sectioni",
+      pin: true,
+      scrub: 3,
+      
+      pinSpacing: false,
+      markers: true,
+      start: "center center",
+      end: "+=8000",
+      onUpdate: () =>{requestAnimationFrame(draw);}
+    },
+  
+  });
+  requestAnimationFrame(updateCanvas)
 });

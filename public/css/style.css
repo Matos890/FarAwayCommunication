@@ -16,7 +16,6 @@ html {
 }
 body {
   line-height: 1.5;
- height: 100vh;
   overflow-x: hidden !important;
 }
 .libre-baskerville-regular {
@@ -49,13 +48,13 @@ picture {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: -1;
 }
-#myCanvas1{
-  z-index:-1;
+#myCanvas1 {
+  z-index: -2;
   position: absolute;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
 }
 .mainWrapper {
   display: flex;
@@ -68,6 +67,9 @@ picture {
 }
 .mainSiteWrapper {
   display: flex;
+  width: fit-content;
+  height: 100vh;
+  overflow-y: hidden;
 }
 /* SECTION 1 */
 /* a) Bookmark */
@@ -90,22 +92,22 @@ picture {
 .overlay {
   mix-blend-mode: hard-light;
   position: absolute;
-  z-index: 1;
   height: 100%;
   width: 100%;
 }
 .ov1 {
+  z-index: 2;
   opacity: 0.45;
   background-color: black;
 }
 .ov2 {
+  z-index: 1;
   opacity: 0.86;
   background-color: #892020;
 }
 .frame1 {
-  margin-top: -48%;
-  height: 200vh;
-  aspect-ratio: 0.25;
+  height: 100vh;
+  aspect-ratio: 0.5;
   top: 0;
 }
 .textBookmark {
@@ -118,30 +120,31 @@ picture {
   align-items: center;
   justify-content: center;
   color: #ebecdc;
-  height: 50%;
+  height: 50vh;
+  aspect-ratio: 1;
 }
 .controlTextBookMark {
   width: 80%;
-  margin-right: 2vw;
-  margin-left: 2vw;
+  /* margin-right: 2vw;
+  margin-left: 2vw; */
 }
 /* b) first page */
 .page {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 200vh;
+  /* height: 200vh; */
   overflow-y: hidden;
- color:#333333; 
+  color: #333333;
   font-size: 1.9vh;
   text-wrap: wrap;
   font-family: "libre baskerville";
-  overflow-y: hidden;
+  overflow-y: hidden !important;
 }
-.p-01{
-
-  aspect-ratio: 75/100;
-
+.p-01 {
+  justify-content: space-between !important;
+  height: 100vh;
+  aspect-ratio: 2;
 }
 p {
   margin-bottom: 1.5vh;
@@ -170,25 +173,27 @@ p {
   aspect-ratio: 0.5;
 }
 /* Pagina 2 */
-.p-02{
-  aspect-ratio: 1;
-  border:solid
+.p-02 {
+  height: 100vh;
+  aspect-ratio: 2;
+  border: solid;
 }
 .frame3 {
   height: 65vh;
   aspect-ratio: 1.28;
-  border:solid;
+  border: solid;
 }
 /* Pagina 3 */
-.p-03{
-  aspect-ratio: 1;
-  border:solid;
+.p-03 {
+  height: 100vh;
+  aspect-ratio: 2;
+  border: solid;
 }
 /* background */
-.background{
-  position:absolute;
+.background {
+  position: absolute;
   aspect-ratio: 1.48;
-  height:100vh;
-  opacity:0.21;
-  
+  height: 100vh;
+  opacity: 0.21;
 }
+
