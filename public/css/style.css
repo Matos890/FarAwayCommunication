@@ -140,12 +140,10 @@ picture {
   align-items: center;
   justify-content: space-around;
   /* height: 200vh; */
-  overflow-y: hidden;
   color: #333333;
   font-size: 1.9vh;
   text-wrap: wrap;
   font-family: "libre baskerville";
-  overflow-y: hidden !important;
 }
 .p-01 {
   justify-content: space-between !important;
@@ -172,8 +170,18 @@ p > .page{
   overflow-y: hidden;
   width: fit-content;
 }
+.containerFrame2Copy {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.29vh;
+  grid-column: 2;
+  overflow-y: hidden;
+  width: fit-content;
+}
 .gif1{
-width: 100%;
+  height: 65vh;
+  aspect-ratio: 0.5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .textContainer{
   width: fit-content;

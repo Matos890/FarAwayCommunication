@@ -694,13 +694,6 @@ preloadImages(imageSources, ()=>{
         stagger: 0.2,
         duration: 5
     });
-    (0, _gsapDefault.default).to(".containerFrame2", {
-        x: "10vw",
-        scrollTrigger: {
-            trigger: ".gif1",
-            scrub: 1
-        }
-    });
     const sections = (0, _gsapDefault.default).utils.toArray(".scroller ");
     // create the scrollSmoother before your scrollTriggers
     let scrollTween = (0, _gsapDefault.default).to(sections, {
@@ -721,10 +714,20 @@ preloadImages(imageSources, ()=>{
             }
         }
     });
+    // gsap.to('.containerFrame2', {
+    //   x: '400',
+    //   scrollTrigger:{
+    //     trigger: '.gifChappe',
+    //     scrub:1,
+    //     pin:true,
+    //     start:"center center",
+    //     end:'+=8000'
+    //   }
+    // })
     requestAnimationFrame(updateCanvas);
 });
 
-},{"gsap":"fPSuC","gsap/all":"3UJRo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","d2847929e4f80a5f":"6rkt6"}],"fPSuC":[function(require,module,exports) {
+},{"gsap":"fPSuC","gsap/all":"3UJRo","d2847929e4f80a5f":"6rkt6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPSuC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "gsap", ()=>gsapWithCSS);
