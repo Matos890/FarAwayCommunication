@@ -9,10 +9,8 @@ const frame1 = document.querySelector(".frame1");
 const ctx = canvas.getContext("2d");
 const ctx1 = canvas1.getContext("2d");
 ctx.globalCompositeOperation = "source-over";
-
 const imageSources = [
   "/img/Emblemata_1624.jpg",
-  "/img/chappe.png",
   "/img/chappe.png",
   "/img/administrative_francia.png",
   "/img/chappebackground.png",
@@ -123,10 +121,17 @@ preloadImages(imageSources, () => {
     ease: "power1.inOut",
   });
   gsap.from(".spanBookmark", {
-    opacity:0,
+    opacity: 0,
     y: "10vh",
     stagger: 0.2,
     duration: 5,
+  });
+  gsap.to(".containerFrame2", {
+    x: "10vw",
+    scrollTrigger: {
+      trigger: ".gif1",
+      scrub: 1,
+    },
   });
   const sections = gsap.utils.toArray(".scroller ");
   // create the scrollSmoother before your scrollTriggers
