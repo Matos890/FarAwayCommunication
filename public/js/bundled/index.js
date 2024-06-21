@@ -718,7 +718,7 @@ preloadImages(imageSources, ()=>{
     requestAnimationFrame(updateCanvas);
 });
 
-},{"gsap":"fPSuC","gsap/all":"3UJRo","d2847929e4f80a5f":"6rkt6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPSuC":[function(require,module,exports) {
+},{"gsap":"fPSuC","gsap/all":"3UJRo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","d2847929e4f80a5f":"6rkt6"}],"fPSuC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "gsap", ()=>gsapWithCSS);
