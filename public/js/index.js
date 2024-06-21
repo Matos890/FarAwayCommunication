@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-gsap.registerPlugin(ScrollTrigger );
+gsap.registerPlugin(ScrollTrigger);
 const cover = require("canvas-image-cover");
 const canvas = document.getElementById("myCanvas");
 const canvas1 = document.getElementById("myCanvas1");
@@ -55,13 +55,12 @@ function getDimension() {
 
 function draw() {
   {
-    
-const screenWidth = window.innerWidth;
-const screenHeight = window.innerHeight;
-canvas.setAttribute("width", screenWidth)
-canvas.setAttribute("height", screenHeight)
-canvas1.setAttribute("width", screenWidth)
-canvas1.setAttribute("height", screenHeight)
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    canvas.setAttribute("width", screenWidth);
+    canvas.setAttribute("height", screenHeight);
+    canvas1.setAttribute("width", screenWidth);
+    canvas1.setAttribute("height", screenHeight);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
     const { frameX, frameY, frameWidth, frameHeight } = getDimension();
@@ -83,6 +82,10 @@ canvas1.setAttribute("height", screenHeight)
           .pan(0.7, 0)
           .render(ctx);
       } else {
+        ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
+        ctx.shadowBlur = 7;
+        ctx.shadowOffsetX = 10;
+        ctx.shadowOffsetY = 10;
         ctx.drawImage(
           imgObj,
           frameX[i],
@@ -94,9 +97,9 @@ canvas1.setAttribute("height", screenHeight)
     });
   }
 }
-function updateCanvas(){
-  draw(); 
-  requestAnimationFrame(updateCanvas)
+function updateCanvas() {
+  draw();
+  requestAnimationFrame(updateCanvas);
 }
 
 preloadImages(imageSources, () => {
@@ -113,25 +116,39 @@ preloadImages(imageSources, () => {
 
   //   }
   // });
-
+  gsap.from(".titoloChappe", {
+    opacity: 0,
+    y: "3vh",
+    duration: 1,
+    ease: "power1.inOut",
+  });
+  gsap.from(".spanBookmark", {
+    opacity:0,
+    y: "10vh",
+    stagger: 0.2,
+    duration: 5,
+  });
   const sections = gsap.utils.toArray(".scroller ");
-// create the scrollSmoother before your scrollTriggers
+  // create the scrollSmoother before your scrollTriggers
   let scrollTween = gsap.to(sections, {
     xPercent: -100 * (sections.length - 1),
     duration: 5,
-    ease: "none",
+    delay: 0.2,
+    ease: "power1.inOut",
     scrollTrigger: {
       trigger: ".sectioni",
+
       pin: true,
       scrub: 3,
-      
+
       pinSpacing: false,
       markers: true,
       start: "center center",
       end: "+=8000",
-      onUpdate: () =>{requestAnimationFrame(draw);}
+      onUpdate: () => {
+        requestAnimationFrame(draw);
+      },
     },
-  
   });
-  requestAnimationFrame(updateCanvas)
+  requestAnimationFrame(updateCanvas);
 });

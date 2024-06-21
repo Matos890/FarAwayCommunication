@@ -657,7 +657,13 @@ function draw() {
             } else if (i === 0) cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
                 mode: "cover"
             }).zoom(1.5).pan(0.7, 0).render(ctx);
-            else ctx.drawImage(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i]);
+            else {
+                ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
+                ctx.shadowBlur = 7;
+                ctx.shadowOffsetX = 10;
+                ctx.shadowOffsetY = 10;
+                ctx.drawImage(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i]);
+            }
         });
     }
 }
@@ -677,12 +683,25 @@ preloadImages(imageSources, ()=>{
     //     markers:true,
     //   }
     // });
+    (0, _gsapDefault.default).from(".titoloChappe", {
+        opacity: 0,
+        y: "3vh",
+        duration: 1,
+        ease: "power1.inOut"
+    });
+    (0, _gsapDefault.default).from(".spanBookmark", {
+        opacity: 0,
+        y: "10vh",
+        stagger: 0.2,
+        duration: 5
+    });
     const sections = (0, _gsapDefault.default).utils.toArray(".scroller ");
     // create the scrollSmoother before your scrollTriggers
     let scrollTween = (0, _gsapDefault.default).to(sections, {
         xPercent: -100 * (sections.length - 1),
         duration: 5,
-        ease: "none",
+        delay: 0.2,
+        ease: "power1.inOut",
         scrollTrigger: {
             trigger: ".sectioni",
             pin: true,
