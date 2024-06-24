@@ -1,5 +1,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { Timeline } from "gsap/gsap-core";
+
 gsap.registerPlugin(ScrollTrigger);
 const cover = require("canvas-image-cover");
 const canvas = document.getElementById("myCanvas");
@@ -10,12 +12,7 @@ const ctx = canvas.getContext("2d");
 const ctx1 = canvas1.getContext("2d");
 ctx.globalCompositeOperation = "source-over";
 
-const imageSources = [
-  "/img/Emblemata_1624.jpg",
-  "/img/chappe.png",
-  "/img/administrative_francia.png",
-  "/img/chappebackground.png",
-];
+const imageSources = ["/img/Emblemata_1624.jpg", "/img/chappebackground.png"];
 const imageSources1 = [];
 
 const images = [];
@@ -100,21 +97,45 @@ function updateCanvas() {
   draw();
   requestAnimationFrame(updateCanvas);
 }
+function calculatePositionsGif() {
+  const container1 = document.querySelector(".containerFrame2");
+  const positionContainer1X = container1.getBoundingClientRect().left;
+  const canvasPositionX = canvas.getBoundingClientRect().left;
+  const gifX = positionContainer1X - canvasPositionX;
 
+  const container2 = document.querySelector(".containerFrame2Copy");
+  const positionContainer2X = container2.getBoundingClientRect().left;
+  const endTrigger = positionContainer2X - canvasPositionX;
+
+  const distance = endTrigger - gifX;
+
+  return {
+    positionContainer1X,
+    gifX,
+    positionContainer2X,
+    endTrigger,
+    distance,
+  };
+}
+function calculateXPosition() {}
 preloadImages(imageSources, () => {
   window.addEventListener("resize", draw);
   window.addEventListener("load", draw);
+  // const container1 = document.querySelector(".containerFrame2");
+  // const positionContainer1X = container1.getBoundingClientRect().left;
+  // const canvasPositionX = canvas.getBoundingClientRect().left;
+  // const gifX = positionContainer1X - canvasPositionX;
+  // const container2 = document.querySelector(".containerFrame2Copy");
+  // const positionContainer2X = container2.getBoundingClientRect().left;
+  // const endTrigger = positionContainer2X - canvasPositionX;
+  // const distance = endTrigger - gifX;
+  let { positionContainer1X, gifX, positionContainer2X, endTrigger, distance } =
+    calculatePositionsGif();
 
-  // gsap.to(frame1, {
-  //   marginLeft: 200,
-  //   duration: 2,
-  //   onUpdate: draw,
-  //   scrollTrigger:{
-  //     trigger:frame1,
-  //     markers:true,
-
-  //   }
-  // });
+  window.addEventListener("resize", () => {
+    ({ positionContainer1X, gifX, positionContainer2X, endTrigger, distance } =
+      calculatePositionsGif());
+  });
   gsap.from(".titoloChappe", {
     opacity: 0,
     y: "3vh",
@@ -122,42 +143,100 @@ preloadImages(imageSources, () => {
     ease: "power1.inOut",
   });
   gsap.from(".spanBookmark", {
-    opacity:0,
+    opacity: 0,
     y: "10vh",
     stagger: 0.2,
-    duration: 5  ,
+    duration: 5,
   });
-  const sections = gsap.utils.toArray(".scroller ");
-  // create the scrollSmoother before your scrollTriggers
+  const sections = gsap.utils.toArray(".mainWrapper .scroller ");
   let scrollTween = gsap.to(sections, {
     xPercent: -100 * (sections.length - 1),
     duration: 5,
     delay: 0.2,
-    ease: "power1.inOut",
+    ease: "none",
     scrollTrigger: {
       trigger: ".sectioni",
-
+      // markers:true,
       pin: true,
-      scrub: 3,
-
+      scrub: 5,
       pinSpacing: false,
+      invalidateOnRefresh: true,
       markers: true,
       start: "center center",
-      end: "+=8000",
+      end: "+=7000",
       onUpdate: () => {
         requestAnimationFrame(draw);
       },
     },
   });
-  // gsap.to('.containerFrame2', {
-  //   x: '400',
-  //   scrollTrigger:{
-  //     trigger: '.gifChappe',
-  //     scrub:1,
-  //     pin:true,
-  //     start:"center center",
-  //     end:'+=8000'
-  //   }
-  // })
+  const gifMoving = function () {
+    gsap.to(".gif1", {
+      x: () => {
+        const container1 = document.querySelector(".containerFrame2");
+        const positionContainer1X = container1.getBoundingClientRect().left;
+        const canvasPositionX = canvas.getBoundingClientRect().left;
+        const gifX = positionContainer1X - canvasPositionX;
+
+        const container2 = document.querySelector(".containerFrame2Copy");
+        const positionContainer2X = container2.getBoundingClientRect().left;
+        const endTrigger = positionContainer2X - canvasPositionX;
+
+        const distance = endTrigger - gifX;
+        return distance;
+      },
+      scrollTrigger: {
+        trigger: ".gif1",
+        // endTrigger:'containerFrame2Copy',
+        containerAnimation: scrollTween,
+        horizontal: true,
+        pin: true,
+        scrub:1, 
+        pinType: "transform",
+        invalidateOnRefresh: true,
+        start: () => `0   ${gifX}`,
+        end: () => `center  -${endTrigger}`,
+      },
+    });
+
+    //-- MAP ANIMATION //
+    const tl = gsap.timeline();
+
+    tl.add("start")
+      .from(
+        map,
+        {
+          opacity: 0,
+          duration: 2,
+        },
+        "start"
+      )
+      .from(
+        pallini,
+        {
+          opacity: 0,
+          duration: 2,
+        },
+        "start"
+      )
+      .from(cities, { opacity: 0, duration: 2 })
+      .from(primaEra, { opacity: 0, duration: 2 })
+      .from(secondaEra, { opacity: 0, duration: 2 })
+      .from(terzaEra, { opacity: 0, duration: 2 })
+      .from(after1830, {
+        opacity: 0,
+        duration: 2,
+      });
+    ScrollTrigger.create({
+      animation: tl, // La timeline da collegare
+      containerAnimation: scrollTween,
+      trigger: ".p-03", // L'elemento che fa scattare lo ScrollTrigger
+      start: "left center",
+
+      end: "+=200", // Quando deve iniziare l'animazione
+      // markers: true  // Mostrare i markers per il debug
+    });
+  };
+
+  window.addEventListener("resize", gifMoving());
   requestAnimationFrame(updateCanvas);
 });

@@ -588,6 +588,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _gsap = require("gsap");
 var _gsapDefault = parcelHelpers.interopDefault(_gsap);
 var _all = require("gsap/all");
+var _gsapCore = require("gsap/gsap-core");
 (0, _gsapDefault.default).registerPlugin((0, _all.ScrollTrigger));
 const cover = require("d2847929e4f80a5f");
 const canvas = document.getElementById("myCanvas");
@@ -599,8 +600,6 @@ const ctx1 = canvas1.getContext("2d");
 ctx.globalCompositeOperation = "source-over";
 const imageSources = [
     "/img/Emblemata_1624.jpg",
-    "/img/chappe.png",
-    "/img/administrative_francia.png",
     "/img/chappebackground.png"
 ];
 const imageSources1 = [];
@@ -670,18 +669,39 @@ function updateCanvas() {
     draw();
     requestAnimationFrame(updateCanvas);
 }
+function calculatePositionsGif() {
+    const container1 = document.querySelector(".containerFrame2");
+    const positionContainer1X = container1.getBoundingClientRect().left;
+    const canvasPositionX = canvas.getBoundingClientRect().left;
+    const gifX = positionContainer1X - canvasPositionX;
+    const container2 = document.querySelector(".containerFrame2Copy");
+    const positionContainer2X = container2.getBoundingClientRect().left;
+    const endTrigger = positionContainer2X - canvasPositionX;
+    const distance = endTrigger - gifX;
+    return {
+        positionContainer1X,
+        gifX,
+        positionContainer2X,
+        endTrigger,
+        distance
+    };
+}
+function calculateXPosition() {}
 preloadImages(imageSources, ()=>{
     window.addEventListener("resize", draw);
     window.addEventListener("load", draw);
-    // gsap.to(frame1, {
-    //   marginLeft: 200,
-    //   duration: 2,
-    //   onUpdate: draw,
-    //   scrollTrigger:{
-    //     trigger:frame1,
-    //     markers:true,
-    //   }
-    // });
+    // const container1 = document.querySelector(".containerFrame2");
+    // const positionContainer1X = container1.getBoundingClientRect().left;
+    // const canvasPositionX = canvas.getBoundingClientRect().left;
+    // const gifX = positionContainer1X - canvasPositionX;
+    // const container2 = document.querySelector(".containerFrame2Copy");
+    // const positionContainer2X = container2.getBoundingClientRect().left;
+    // const endTrigger = positionContainer2X - canvasPositionX;
+    // const distance = endTrigger - gifX;
+    let { positionContainer1X, gifX, positionContainer2X, endTrigger, distance } = calculatePositionsGif();
+    window.addEventListener("resize", ()=>{
+        ({ positionContainer1X, gifX, positionContainer2X, endTrigger, distance } = calculatePositionsGif());
+    });
     (0, _gsapDefault.default).from(".titoloChappe", {
         opacity: 0,
         y: "3vh",
@@ -694,40 +714,90 @@ preloadImages(imageSources, ()=>{
         stagger: 0.2,
         duration: 5
     });
-    const sections = (0, _gsapDefault.default).utils.toArray(".scroller ");
-    // create the scrollSmoother before your scrollTriggers
+    const sections = (0, _gsapDefault.default).utils.toArray(".mainWrapper .scroller ");
     let scrollTween = (0, _gsapDefault.default).to(sections, {
         xPercent: -100 * (sections.length - 1),
         duration: 5,
         delay: 0.2,
-        ease: "power1.inOut",
+        ease: "none",
         scrollTrigger: {
             trigger: ".sectioni",
+            // markers:true,
             pin: true,
-            scrub: 3,
+            scrub: 5,
             pinSpacing: false,
+            invalidateOnRefresh: true,
             markers: true,
             start: "center center",
-            end: "+=8000",
+            end: "+=7000",
             onUpdate: ()=>{
                 requestAnimationFrame(draw);
             }
         }
     });
-    // gsap.to('.containerFrame2', {
-    //   x: '400',
-    //   scrollTrigger:{
-    //     trigger: '.gifChappe',
-    //     scrub:1,
-    //     pin:true,
-    //     start:"center center",
-    //     end:'+=8000'
-    //   }
-    // })
+    const gifMoving = function() {
+        (0, _gsapDefault.default).to(".gif1", {
+            x: ()=>{
+                const container1 = document.querySelector(".containerFrame2");
+                const positionContainer1X = container1.getBoundingClientRect().left;
+                const canvasPositionX = canvas.getBoundingClientRect().left;
+                const gifX = positionContainer1X - canvasPositionX;
+                const container2 = document.querySelector(".containerFrame2Copy");
+                const positionContainer2X = container2.getBoundingClientRect().left;
+                const endTrigger = positionContainer2X - canvasPositionX;
+                const distance = endTrigger - gifX;
+                return distance;
+            },
+            scrollTrigger: {
+                trigger: ".gif1",
+                // endTrigger:'containerFrame2Copy',
+                containerAnimation: scrollTween,
+                horizontal: true,
+                pin: true,
+                scrub: 1,
+                pinType: "transform",
+                invalidateOnRefresh: true,
+                start: ()=>`0   ${gifX}`,
+                end: ()=>`center  -${endTrigger}`
+            }
+        });
+        //-- MAP ANIMATION //
+        const tl = (0, _gsapDefault.default).timeline();
+        tl.add("start").from(map, {
+            opacity: 0,
+            duration: 2
+        }, "start").from(pallini, {
+            opacity: 0,
+            duration: 2
+        }, "start").from(cities, {
+            opacity: 0,
+            duration: 2
+        }).from(primaEra, {
+            opacity: 0,
+            duration: 2
+        }).from(secondaEra, {
+            opacity: 0,
+            duration: 2
+        }).from(terzaEra, {
+            opacity: 0,
+            duration: 2
+        }).from(after1830, {
+            opacity: 0,
+            duration: 2
+        });
+        (0, _all.ScrollTrigger).create({
+            animation: tl,
+            containerAnimation: scrollTween,
+            trigger: ".p-03",
+            start: "left center",
+            end: "+=200"
+        });
+    };
+    window.addEventListener("resize", gifMoving());
     requestAnimationFrame(updateCanvas);
 });
 
-},{"gsap":"fPSuC","gsap/all":"3UJRo","d2847929e4f80a5f":"6rkt6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPSuC":[function(require,module,exports) {
+},{"gsap":"fPSuC","gsap/all":"3UJRo","d2847929e4f80a5f":"6rkt6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","gsap/gsap-core":"05eeC"}],"fPSuC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "gsap", ()=>gsapWithCSS);

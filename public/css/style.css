@@ -1,3 +1,4 @@
+
 body,
 h1,
 h2,
@@ -12,11 +13,13 @@ picture {
 html {
   font-size: 10px;
   background-color: #d0c8a4;
-  height: 100vh;
+  height: fit-content;
 }
 body {
   line-height: 1.5;
+  /* height: 5000px !important; */
   overflow-x: hidden !important;
+
 }
 .libre-baskerville-regular {
   font-family: "Libre Baskerville", serif;
@@ -45,7 +48,11 @@ picture {
   display: block;
 }
 .sections {
-  display: flex;
+  /* display: flex; */
+  height: auto;
+}
+.scroller{
+  height: fit-content;
 }
 #myCanvas {
   position: absolute;
@@ -72,7 +79,8 @@ picture {
   display: flex;
   width: fit-content;
   height: 100vh;
-  overflow-y: hidden;
+
+  /* overflow-y: hidden; */
 }
 /* SECTION 1 */
 /* a) Bookmark */
@@ -81,6 +89,7 @@ picture {
   width: fit-content;
   height: 100vh;
   position: relative;
+  overflow-x: visible;
 }
 .containerFrame1 {
   display: flex;
@@ -145,6 +154,9 @@ picture {
   text-wrap: wrap;
   font-family: "libre baskerville";
 }
+/* .sectioni{
+  height: 500vh;
+} */
 .p-01 {
   justify-content: space-between !important;
   height: 100vh;
@@ -167,7 +179,6 @@ p > .page{
   flex-direction: row;
   font-size: 1.29vh;
   grid-column: 2;
-  overflow-y: hidden;
   width: fit-content;
 }
 .containerFrame2Copy {
@@ -175,13 +186,12 @@ p > .page{
   flex-direction: row;
   font-size: 1.29vh;
   grid-column: 2;
-  overflow-y: hidden;
   width: fit-content;
 }
 .gif1{
   height: 65vh;
   aspect-ratio: 0.5;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  will-change: transform;
 }
 .textContainer{
   width: fit-content;
@@ -191,30 +201,30 @@ p > .page{
   flex-direction: row;
   font-size: 1.29vh;
   position: relative;
-  overflow-y: hidden;
+}
+.sectioni{
+  width: 100%;
+  overflow-x: visible;
 }
 
-.frame2 {
+.svg1 {
   height: 65vh;
-  aspect-ratio: 0.5;
+  aspect-ratio: 1.28;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 /* Pagina 2 */
 .p-02 {
   height: 100vh;
   aspect-ratio: 2;
-  border: solid;
 }
-.frame3 {
+.frame2 {
   height: 65vh;
   aspect-ratio: 1.28;
-  border: solid;
 }
 /* Pagina 3 */
 .p-03 {
   height: 100vh;
   aspect-ratio: 2;
-  border: solid;
 }
 /* background */
 .background {
@@ -223,3 +233,18 @@ p > .page{
   height: 100vh;
   opacity: 0.21;
 }
+/* map */
+
+#map > .st1{
+stroke-width: 0.5;
+}
+#cities > .st4, .st5{
+  font-size:2.9vh;
+}
+#map{
+  stroke-width: 1;
+}
+circle{
+  width:3vw;
+}
+
