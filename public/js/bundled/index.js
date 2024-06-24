@@ -599,7 +599,8 @@ const ctx = canvas.getContext("2d");
 const ctx1 = canvas1.getContext("2d");
 ctx.globalCompositeOperation = "source-over";
 const imageSources = [
-    "/img/Emblemata_1624.jpg",
+    "/img/Emblemata_1624_bookmark.jpg",
+    "/img/Franklin_hand_bookmark.jpg",
     "/img/chappebackground.png"
 ];
 const imageSources1 = [];
@@ -652,7 +653,7 @@ function draw() {
             if (imgObj.src.includes("background")) {
                 ctx1.globalAlpha = 0.2;
                 ctx1.drawImage(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i]);
-            } else if (i === 0) cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
+            } else if (imgObj.src.includes("bookmark")) cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
                 mode: "cover"
             }).zoom(1.5).pan(0.7, 0).render(ctx);
             else {

@@ -234,8 +234,9 @@ p > .page {
   aspect-ratio: 2;
 }
 .frame2 {
-  height: 65vh;
-  aspect-ratio: 1.28;
+  height: 100vh;
+  aspect-ratio: 0.5;
+  top: 0;
 }
 /* Pagina 3 */
 .p-03 {
@@ -243,6 +244,11 @@ p > .page {
   aspect-ratio: 2;
 }
 /* background */
+
+.frame3 {
+  height: 65vh;
+  aspect-ratio: 1.28;
+}
 .background {
   position: absolute;
   aspect-ratio: 1.48;
@@ -268,12 +274,46 @@ circle {
   stroke: #000000;
   z-index: -1;
 }
-#secondaEra > .st7{
-  stroke:#ec7b11;
+#secondaEra > .st7 {
+  stroke: #ec7b11;
 }
-#terzaEra > .st7{
+#terzaEra > .st7 {
   stroke: #ece939;
 }
 #after1830 > .st7 {
-  stroke: #5db828; 
+  stroke: #5db828;
+}
+
+/* SECTION MAGNETISM */
+/* BookMark 2 */
+
+.overlayM {
+  mix-blend-mode: darken;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.overlay2M {
+  mix-blend-mode: hard-light;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.ov1M {
+  z-index: 2;
+  opacity: 0.68;
+  background-color: #0d07c1;
+}
+.ov2M {
+  z-index: 1;
+  opacity: 0.3;
+  background-color: black;
+}
+
+/* PAGINA 1 */
+.introM > p {
+  margin-bottom: 2vh;
+}
+.textPage01M > .controlText {
+  height: 55vh;
 }

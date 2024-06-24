@@ -12,7 +12,11 @@ const ctx = canvas.getContext("2d");
 const ctx1 = canvas1.getContext("2d");
 ctx.globalCompositeOperation = "source-over";
 
-const imageSources = ["/img/Emblemata_1624.jpg", "/img/chappebackground.png"];
+const imageSources = [
+  "/img/Emblemata_1624_bookmark.jpg",
+  "/img/Franklin_hand_bookmark.jpg",
+  "/img/chappebackground.png",
+];
 const imageSources1 = [];
 
 const images = [];
@@ -70,7 +74,7 @@ function draw() {
           frameWidth[i],
           frameHeight[i]
         );
-      } else if (i === 0) {
+      } else if (imgObj.src.includes("bookmark")) {
         cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
           mode: "cover",
         })
@@ -183,16 +187,17 @@ preloadImages(imageSources, () => {
 
         const distance = endTrigger - gifX;
         return distance;
-      },ease:'power1.inOut',
+      },
+      ease: "power1.inOut",
       scrollTrigger: {
         trigger: ".gif1",
         // endTrigger:'containerFrame2Copy',
         containerAnimation: scrollTween,
         horizontal: true,
         pin: true,
-        scrub:true, 
+        scrub: true,
         pinType: "transform",
-        pinSpacing:false,
+        pinSpacing: false,
         invalidateOnRefresh: true,
         start: () => `0   ${gifX}`,
         end: () => `center  -${endTrigger}`,
