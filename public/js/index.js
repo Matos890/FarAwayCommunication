@@ -183,15 +183,16 @@ preloadImages(imageSources, () => {
 
         const distance = endTrigger - gifX;
         return distance;
-      },
+      },ease:'power1.inOut',
       scrollTrigger: {
         trigger: ".gif1",
         // endTrigger:'containerFrame2Copy',
         containerAnimation: scrollTween,
         horizontal: true,
         pin: true,
-        scrub:1, 
+        scrub:true, 
         pinType: "transform",
+        pinSpacing:false,
         invalidateOnRefresh: true,
         start: () => `0   ${gifX}`,
         end: () => `center  -${endTrigger}`,

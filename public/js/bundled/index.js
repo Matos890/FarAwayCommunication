@@ -748,14 +748,16 @@ preloadImages(imageSources, ()=>{
                 const distance = endTrigger - gifX;
                 return distance;
             },
+            ease: "power1.inOut",
             scrollTrigger: {
                 trigger: ".gif1",
                 // endTrigger:'containerFrame2Copy',
                 containerAnimation: scrollTween,
                 horizontal: true,
                 pin: true,
-                scrub: 1,
+                scrub: true,
                 pinType: "transform",
+                pinSpacing: false,
                 invalidateOnRefresh: true,
                 start: ()=>`0   ${gifX}`,
                 end: ()=>`center  -${endTrigger}`
@@ -797,7 +799,7 @@ preloadImages(imageSources, ()=>{
     requestAnimationFrame(updateCanvas);
 });
 
-},{"gsap":"fPSuC","gsap/all":"3UJRo","d2847929e4f80a5f":"6rkt6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","gsap/gsap-core":"05eeC"}],"fPSuC":[function(require,module,exports) {
+},{"gsap":"fPSuC","gsap/all":"3UJRo","gsap/gsap-core":"05eeC","d2847929e4f80a5f":"6rkt6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPSuC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "gsap", ()=>gsapWithCSS);
