@@ -14,8 +14,13 @@ ctx.globalCompositeOperation = "source-over";
 
 const imageSources = [
   "/img/Emblemata_1624_bookmark.jpg",
-  "/img/Franklin_hand_bookmark.jpg",
   "/img/chappebackground.png",
+  "/img/Franklin_hand_bookmark.jpg",
+  "/img/Faraday.png",
+  "/img/henry.png",
+  "/img/giornalisti_bookmark.png",
+  "/img/morse.png",
+  "/img/submarine_bookmark.jpg"
 ];
 const imageSources1 = [];
 
@@ -167,7 +172,7 @@ preloadImages(imageSources, () => {
       invalidateOnRefresh: true,
       markers: true,
       start: "center center",
-      end: "+=7000",
+      end: "+=8000",
       onUpdate: () => {
         requestAnimationFrame(draw);
       },
