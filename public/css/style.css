@@ -134,7 +134,7 @@ article {
   opacity: 0.86;
   background-color: #892020;
 }
-.frame1 {
+.bookmarkframe1 {
   height: 100vh;
   aspect-ratio: 0.5;
   top: 0;
@@ -149,11 +149,11 @@ article {
   height: inherit;
   z-index: 3;
   display: flex;
-  width: inherit;
+  width: 100%;
+  
   align-items: center;
   justify-content: center;
   color: #ebecdc;
-  height: 50vh;
   aspect-ratio: 1;
 }
 .controlTextBookMark {
@@ -236,7 +236,12 @@ p > .page {
   height: 100vh;
   aspect-ratio: 2;
 }
-.frame2 {
+.bookmarkFrame1{
+  height:100vh;
+  aspect-ratio: 0.5;
+  top:0;
+}
+.bookmarkFrame2 {
   height: 100vh;
   aspect-ratio: 0.5;
   top: 0;
@@ -364,11 +369,29 @@ circle {
 /* ELETTROMAGNETISMO */
 /* bookmark */
 
-.frame6 {
+.bookmarkFrame3 {
   height: 100vh;
   aspect-ratio: 0.5;
   top: 0;
 }
+.overlayMr {
+  mix-blend-mode: darken;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.overlay2Mr {
+  mix-blend-mode: hard-light;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.ov1Mr {
+  z-index: 2;
+  opacity: 0.68;
+  background-color:#605a20;
+}
+
 /* PAGINA 1 */
 .wrapperContentP1T {
   height: 33vh;
@@ -388,7 +411,19 @@ circle {
 }
 /* DIFFUSIONE */
 /* Bookmark */
-.frame8 {
+
+.overlay2D {
+  mix-blend-mode: hard-light;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.ov2D {
+  z-index: 2;
+  opacity: 0.86;
+  background-color:#093f16;
+}
+.bookmarkFrame4 {
   height: 100vh;
   aspect-ratio: 0.5;
   top: 0;

@@ -7,25 +7,28 @@ const cover = require("canvas-image-cover");
 const canvas = document.getElementById("myCanvas");
 const canvas1 = document.getElementById("myCanvas1");
 const frame = document.querySelectorAll("[class^='frame']");
+const bookmarkFrame = document.querySelectorAll("[class^='bookmarkFrame']");
 const frame1 = document.querySelector(".frame1");
 const ctx = canvas.getContext("2d");
 const ctx1 = canvas1.getContext("2d");
 ctx.globalCompositeOperation = "source-over";
-
+bookmarkFrame.forEach((bookmark) => {
+  console.log(bookmark);
+});
+//IMAGES
 const imageSources = [
-  "/img/Emblemata_1624_bookmark.jpg",
+  "/img/Emblemata_1624_bookmark_1.jpg",
   "/img/chappebackground.png",
-  "/img/Franklin_hand_bookmark.jpg",
+  "/img/Franklin_hand_bookmark_2.jpg",
   "/img/Faraday.png",
   "/img/henry.png",
-  "/img/giornalisti_bookmark.png",
+  "/img/giornalisti_bookmark_3.png",
   "/img/morse.png",
-  "/img/submarine_bookmark.jpg"
+  "/img/submarine_bookmark_4.jpg",
 ];
-const imageSources1 = [];
 
 const images = [];
-
+const bookmark = [];
 function preloadImages(sources, callback) {
   let loadedImages = 0;
   sources.forEach((src, index) => {
@@ -37,10 +40,17 @@ function preloadImages(sources, callback) {
         callback();
       }
     };
-    images[index] = img;
+    if (img.src.includes("bookmark")) {
+      bookmark.push(img);
+      console.log(bookmark);
+    } else {
+      images.push(img);
+      console.log(images);
+    }
   });
 }
-
+console.log("this is bookmark", bookmark);
+console.log("this is image", images);
 function getDimension() {
   let canvasX = canvas.getBoundingClientRect().left;
   let canvasY = canvas.getBoundingClientRect().top;
@@ -48,6 +58,11 @@ function getDimension() {
   let frameY = [];
   let frameWidth = [];
   let frameHeight = [];
+  let frameBX = [];
+  let frameBY = [];
+  let frameWidthB = [];
+  let frameHeightB = [];
+
   frame.forEach((frame, i) => {
     let rect = frame.getBoundingClientRect();
     frameX.push(rect.left - canvasX);
@@ -55,7 +70,61 @@ function getDimension() {
     frameWidth.push(frame.offsetWidth);
     frameHeight.push(frame.offsetHeight);
   });
-  return { frameX, frameY, frameWidth, frameHeight };
+  bookmarkFrame.forEach((bookFrame, i) => {
+    let rect = bookFrame.getBoundingClientRect();
+    frameBX.push(rect.left - canvasX);
+    frameBY.push(rect.top - canvasY);
+    frameWidthB.push(bookFrame.offsetWidth);
+    frameHeightB.push(bookFrame.offsetHeight);
+  });
+  return {
+    frameX,
+    frameY,
+    frameWidth,
+    frameHeight,
+    frameBX,
+    frameBY,
+    frameWidthB,
+    frameHeightB,
+  };
+}
+function bookmarkPos(bookmark, frameBX, frameBY, frameWidthB, frameHeightB) {
+  //1.
+
+    cover(bookmark[0], frameBX[0], frameBY[0], frameWidthB[0], frameHeightB[0], {
+      mode: "cover",
+    })
+      .zoom(1.5)
+      .pan(0.7, 0)
+      .render(ctx);
+   ;
+   //2.
+    cover(bookmark[1], frameBX[1], frameBY[1], frameWidthB[1], frameHeightB[1], {
+      mode: "cover",
+    })
+      .zoom(2.5)
+      .pan(0.2, 0)
+      .render(ctx);
+   ;
+   //3.
+
+    cover(bookmark[2], frameBX[2], frameBY[2], frameWidthB[2], frameHeightB[2], {
+      mode: "cover",
+    })
+      .zoom(1.2)
+      .pan(0.295, 0)
+      .render(ctx);
+   ;
+   //4.
+   
+    cover(bookmark[3], frameBX[3], frameBY[3], frameWidthB[3], frameHeightB[3], {
+      mode: "cover",
+    })
+      .zoom(1.2)
+      .pan(0.5, 0)
+      .render(ctx);
+   ;
+
 }
 
 function draw() {
@@ -68,7 +137,17 @@ function draw() {
     canvas1.setAttribute("height", screenHeight);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
-    const { frameX, frameY, frameWidth, frameHeight } = getDimension();
+    const {
+      frameX,
+      frameY,
+      frameWidth,
+      frameHeight,
+      frameBX,
+      frameBY,
+      frameWidthB,
+      frameHeightB,
+    } = getDimension();
+    bookmarkPos(bookmark, frameBX, frameBY, frameWidthB, frameHeightB);
     images.forEach((imgObj, i) => {
       if (imgObj.src.includes("background")) {
         ctx1.globalAlpha = 0.2;
@@ -79,13 +158,13 @@ function draw() {
           frameWidth[i],
           frameHeight[i]
         );
-      } else if (imgObj.src.includes("bookmark")) {
-        cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
-          mode: "cover",
-        })
-          .zoom(1.5)
-          .pan(0.7, 0)
-          .render(ctx);
+        // } else if (imgObj.src.includes("bookmark")) {
+        //   cover(imgObj, frameX[i], frameY[i], frameWidth[i], frameHeight[i], {
+        //     mode: "cover",
+        //   })
+        //     .zoom(1.5)
+        //     .pan(0.7, 0)
+        //     .render(ctx);}
       } else {
         ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
         ctx.shadowBlur = 7;
@@ -126,18 +205,9 @@ function calculatePositionsGif() {
     distance,
   };
 }
-function calculateXPosition() {}
 preloadImages(imageSources, () => {
   window.addEventListener("resize", draw);
   window.addEventListener("load", draw);
-  // const container1 = document.querySelector(".containerFrame2");
-  // const positionContainer1X = container1.getBoundingClientRect().left;
-  // const canvasPositionX = canvas.getBoundingClientRect().left;
-  // const gifX = positionContainer1X - canvasPositionX;
-  // const container2 = document.querySelector(".containerFrame2Copy");
-  // const positionContainer2X = container2.getBoundingClientRect().left;
-  // const endTrigger = positionContainer2X - canvasPositionX;
-  // const distance = endTrigger - gifX;
   let { positionContainer1X, gifX, positionContainer2X, endTrigger, distance } =
     calculatePositionsGif();
 
