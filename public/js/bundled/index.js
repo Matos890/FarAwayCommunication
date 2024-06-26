@@ -619,7 +619,13 @@ const imageSources = [
     "/img/morseNotes.jpg",
     "/img/giornalistibackground.png",
     "/img/submarine_bookmark_4.jpg",
-    "/img/shipbackground.png"
+    "/img/shipbackground.png",
+    "/img/cyrus.png",
+    "/img/messagequeen.png",
+    "/img/1871Telegraph lines.jpg",
+    "/img/1880Telegraph lines.jpg",
+    "/img/1901Telegraph lines.jpg",
+    "/img/caricaturebackground.png"
 ];
 const images = [];
 const bookmark = [];
