@@ -607,11 +607,19 @@ const imageSources = [
     "/img/Emblemata_1624_bookmark_1.jpg",
     "/img/chappebackground.png",
     "/img/Franklin_hand_bookmark_2.jpg",
+    "/img/magnetism1background.png",
     "/img/Faraday.png",
     "/img/henry.png",
+    "/img/railwaymap.png",
+    "/img/magnetismbackground2.png",
     "/img/giornalisti_bookmark_3.png",
+    "/img/morsebackground.png",
     "/img/morse.png",
-    "/img/submarine_bookmark_4.jpg"
+    "/img/testbackground.png",
+    "/img/morseNotes.jpg",
+    "/img/giornalistibackground.png",
+    "/img/submarine_bookmark_4.jpg",
+    "/img/shipbackground.png"
 ];
 const images = [];
 const bookmark = [];
@@ -772,12 +780,12 @@ preloadImages(imageSources, ()=>{
             trigger: ".sectioni",
             // markers:true,
             pin: true,
-            scrub: 5,
+            scrub: 1,
             pinSpacing: false,
             invalidateOnRefresh: true,
             markers: true,
             start: "center center",
-            end: "+=8000",
+            end: "+=20000",
             onUpdate: ()=>{
                 requestAnimationFrame(draw);
             }

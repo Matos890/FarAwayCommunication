@@ -82,7 +82,6 @@ article {
   z-index: -2;
   position: absolute;
   top: 0;
-  left: 30vw;
 }
 .mainWrapper {
   display: flex;
@@ -214,6 +213,8 @@ p > .page {
 }
 .textContainer {
   width: fit-content;
+  display: flex;
+  align-items: center;
 }
 .containerFrame3 {
   display: flex;
@@ -254,6 +255,7 @@ p > .page {
 /* background */
 .backgroundContainer {
   position: absolute;
+  width:0%;
 }
 .frame5 {
   height: 65vh;
@@ -313,7 +315,7 @@ circle {
 .ov1M {
   z-index: 2;
   opacity: 0.68;
-  background-color: #0d07c1;
+  background-color: #251fc6;
 }
 .ov2M {
   z-index: 1;
@@ -321,6 +323,23 @@ circle {
   background-color: black;
 }
 
+/* Background magnetism */
+
+.backgroundContainerEM {
+  position: absolute;
+  width:50%;
+}
+.frame2 {
+  height: 65vh;
+  aspect-ratio: 1.28;
+}
+
+.backgroundEM {
+  position: relative;
+  aspect-ratio: 1.48;
+  height: 50vh;
+  opacity: 0.21;
+}
 /* PAGINA 1 */
 .introM > p {
   margin-bottom: 2vh;
@@ -334,9 +353,8 @@ circle {
   image-rendering: crisp-edges;
   filter: blur(0.5px);
 }
-.textPage01M {
-  margin-left: 3vw;
-}
+/* .textPage01M {
+} */
 .frame4 {
   height: 22vh;
   aspect-ratio: 0.84;
@@ -350,7 +368,6 @@ circle {
   font-size: 1.29vh;
   width: fit-content;
   justify-content: space-between;
-  margin-left: 3vw;
 }
 /* PAGE 2 */
 .controlTextMP2 {
@@ -365,6 +382,23 @@ circle {
 .p-04 {
   height: 100vh;
   aspect-ratio: 2;
+}
+.backgroundContainerEM1 {
+  position: absolute;
+  width:36%;
+}
+
+.backgroundEM1 {
+  position: relative;
+  aspect-ratio: 2.9;
+  height: 80vh;
+  opacity: 0.21;
+}
+.frame7 {
+  height: 50vh;
+  aspect-ratio: 1.3;
+  image-rendering: crisp-edges;
+  filter: blur(0.5px);
 }
 /* ELETTROMAGNETISMO */
 /* bookmark */
@@ -391,27 +425,93 @@ circle {
   opacity: 0.68;
   background-color:#605a20;
 }
-
+.gifMorse{
+  height:65vh;
+  aspect-ratio: 1;
+}
 /* PAGINA 1 */
 .wrapperContentP1T {
-  height: 33vh;
+  height: 100vh;
   width: 70%;
   display: flex;
+  align-items: center;
   justify-content: space-around;
 }
 .textPage01T > .controlText {
   height: 33vh;
   aspect-ratio: 1.4;
 }
-.frame7 {
+.frame8 {
   height: 30vh;
   aspect-ratio: 0.84;
   image-rendering: crisp-edges;
   filter: blur(0.5px);
 }
+.backgroundContainerMr {
+  position: absolute;
+  width:100%;
+}
+
+.backgroundMr {
+  position: relative;
+  aspect-ratio: 1.48;
+  height: 60vh;
+  opacity: 0.21;
+}
+.frame9{
+
+  height: 50vh;
+  aspect-ratio: 1.7;
+  image-rendering: crisp-edges;
+  filter: blur(0.5px);
+}
+.backgroundContainerMr1 {
+  position: absolute;
+  width:70%;
+}
+
+.backgroundMr1 {
+  position: relative;
+  aspect-ratio: 1.48;
+  height: 60vh;
+  opacity: 0.21;
+}
+.frame9{
+
+  height: 50vh;
+  aspect-ratio: 1.7;
+  image-rendering: crisp-edges;
+  filter: blur(0.5px);
+}
+.frame10{
+
+  height: 80vh;
+  aspect-ratio: 1.7;
+  image-rendering: crisp-edges;
+  filter: blur(0.5px);
+}
+/* map */
 /* DIFFUSIONE */
 /* Bookmark */
 
+.backgroundContainerD {
+  position: absolute;
+  width:53%;
+}
+
+.backgroundD {
+  position: relative;
+  aspect-ratio: 1.48;
+  height: 60vh;
+  opacity: 0.21;
+}
+.frame11{
+
+  height: 100vh;
+  aspect-ratio: 2.3;
+  image-rendering: crisp-edges;
+  filter: blur(0.5px);
+}
 .overlay2D {
   mix-blend-mode: hard-light;
   position: absolute;

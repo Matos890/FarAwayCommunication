@@ -20,11 +20,19 @@ const imageSources = [
   "/img/Emblemata_1624_bookmark_1.jpg",
   "/img/chappebackground.png",
   "/img/Franklin_hand_bookmark_2.jpg",
+  "/img/magnetism1background.png",
   "/img/Faraday.png",
   "/img/henry.png",
+  "/img/railwaymap.png",
+  "/img/magnetismbackground2.png",
   "/img/giornalisti_bookmark_3.png",
+  "/img/morsebackground.png",
   "/img/morse.png",
+  "/img/testbackground.png",
+  "/img/morseNotes.jpg",
+  "/img/giornalistibackground.png",
   "/img/submarine_bookmark_4.jpg",
+  "/img/shipbackground.png"
 ];
 
 const images = [];
@@ -91,40 +99,35 @@ function getDimension() {
 function bookmarkPos(bookmark, frameBX, frameBY, frameWidthB, frameHeightB) {
   //1.
 
-    cover(bookmark[0], frameBX[0], frameBY[0], frameWidthB[0], frameHeightB[0], {
-      mode: "cover",
-    })
-      .zoom(1.5)
-      .pan(0.7, 0)
-      .render(ctx);
-   ;
-   //2.
-    cover(bookmark[1], frameBX[1], frameBY[1], frameWidthB[1], frameHeightB[1], {
-      mode: "cover",
-    })
-      .zoom(2.5)
-      .pan(0.2, 0)
-      .render(ctx);
-   ;
-   //3.
+  cover(bookmark[0], frameBX[0], frameBY[0], frameWidthB[0], frameHeightB[0], {
+    mode: "cover",
+  })
+    .zoom(1.5)
+    .pan(0.7, 0)
+    .render(ctx);
+  //2.
+  cover(bookmark[1], frameBX[1], frameBY[1], frameWidthB[1], frameHeightB[1], {
+    mode: "cover",
+  })
+    .zoom(2.5)
+    .pan(0.2, 0)
+    .render(ctx);
+  //3.
 
-    cover(bookmark[2], frameBX[2], frameBY[2], frameWidthB[2], frameHeightB[2], {
-      mode: "cover",
-    })
-      .zoom(1.2)
-      .pan(0.295, 0)
-      .render(ctx);
-   ;
-   //4.
-   
-    cover(bookmark[3], frameBX[3], frameBY[3], frameWidthB[3], frameHeightB[3], {
-      mode: "cover",
-    })
-      .zoom(1.2)
-      .pan(0.5, 0)
-      .render(ctx);
-   ;
+  cover(bookmark[2], frameBX[2], frameBY[2], frameWidthB[2], frameHeightB[2], {
+    mode: "cover",
+  })
+    .zoom(1.2)
+    .pan(0.295, 0)
+    .render(ctx);
+  //4.
 
+  cover(bookmark[3], frameBX[3], frameBY[3], frameWidthB[3], frameHeightB[3], {
+    mode: "cover",
+  })
+    .zoom(1.2)
+    .pan(0.5, 0)
+    .render(ctx);
 }
 
 function draw() {
@@ -237,12 +240,12 @@ preloadImages(imageSources, () => {
       trigger: ".sectioni",
       // markers:true,
       pin: true,
-      scrub: 5,
+      scrub: 1,
       pinSpacing: false,
       invalidateOnRefresh: true,
       markers: true,
       start: "center center",
-      end: "+=8000",
+      end: "+=20000",
       onUpdate: () => {
         requestAnimationFrame(draw);
       },
