@@ -20,27 +20,31 @@
     <title>The Telegraph</title>
   </head>
   <body>
+    <section>
+      <div class="coverArt">
+        <img src="/img/1.telegraphcover.png" alt="">
+      </div>
+    </section>
+    <%- include('intro.ejs') %>
     <!-- SECTION 1 -->
-    <div class="mainSiteWrapper">
-      <section class="sectioni">
-        <div class="mainWrapper">
-          <!-- CHAPPE -->
-          <%- include('chappe.ejs') %>
-          <!-- ELECTROMAGNETISM -->
-          <%- include('electromagnetism.ejs') %>
-          <!-- MORSE -->
-          <%- include('morse.ejs') %>
-          <!-- DIFFUSION -->
-          <%- include('diffusion.ejs') %>
-          <!-- PAGE 1  -->
-          <!-- WHITE SPACE -->
-          <div class="scroller page"></div>
-          <div class="scroller page"></div>
-          <!-- END WHITE SPACE -->
-        </div>
-        <canvas id="myCanvas"></canvas>
-        <canvas id="myCanvas1"></canvas>
-      </section>
-    </div>
+    <section class="sectioni">
+      <div class="mainWrapper">
+        <!-- CHAPPE -->
+        <%- include('chappe.ejs') %>
+        <!-- ELECTROMAGNETISM -->
+        <%- include('electromagnetism.ejs') %>
+        <!-- MORSE -->
+        <%- include('morse.ejs') %>
+        <!-- DIFFUSION -->
+        <%- include('diffusion.ejs') %>
+        <!-- PAGE 1  -->
+        <!-- WHITE SPACE -->
+        <div class="scroller page"></div>
+        <div class="scroller page"></div>
+        <!-- END WHITE SPACE -->
+      </div>
+      <canvas id="myCanvas"></canvas>
+      <canvas id="myCanvas1"></canvas>
+    </section>
   </body>
 </html>

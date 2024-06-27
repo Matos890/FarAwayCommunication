@@ -16,7 +16,7 @@ html {
 }
 body {
   line-height: 1.5;
-  height: 21000px !important;
+  height: 21750px !important;
   overflow-x: hidden !important;
 }
 .libre-baskerville-regular {
@@ -65,10 +65,66 @@ picture {
 article {
   margin-bottom: 2vh;
 }
+.containerIntroText > article > p {
+  margin-bottom: 2vh;
+}
+section {
+  height: 100vh;
+}
 .sections {
   /* display: flex; */
   height: auto;
 }
+/* INTRO */
+.coverArt{
+  display: flex;
+  height: 100vh;
+}
+.contentControl {
+  height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.containerIntro {
+  display: flex;
+  font-size: 1.9vh;
+  font-family: "libre baskerville";
+  width: 80vw;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.containerIntroText {
+  height: 65vh;
+  aspect-ratio: 0.67;
+}
+.contentFrameIntro {
+  display: flex;
+  height: 60vh;
+  aspect-ratio: 0.6;
+  align-items: center;
+  margin-bottom: 1vh;
+}
+.introImage {
+  margin-bottom: 1vh;
+}
+@media (aspect-ratio< 0.99) {
+ .containerIntro{
+  justify-content: center;
+ } 
+  .containerIntroText {
+    height: 55vh;
+    font-size: 1.5vh;
+    order: 2;
+  }
+  .contentFrameIntro{
+    height: 50vh;
+    order:1;
+  }
+}
+
+/* SECTION SCROLLS */
 .scroller {
   display: flex;
   height: fit-content;
