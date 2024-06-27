@@ -789,7 +789,6 @@ preloadImages(imageSources, ()=>{
             scrub: 1,
             pinSpacing: false,
             invalidateOnRefresh: true,
-            markers: true,
             start: "center center",
             end: "+=20000",
             onUpdate: ()=>{
@@ -854,6 +853,29 @@ preloadImages(imageSources, ()=>{
             containerAnimation: scrollTween,
             trigger: ".p-03",
             start: "left center",
+            end: "+=200"
+        });
+        const tl1 = (0, _gsapDefault.default).timeline();
+        const ages = (0, _gsapDefault.default).utils.toArray(".ageMap ");
+        const animationAges = tl1.from(ages, {
+            y: -50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.7,
+            ease: "power3.inOut"
+        }).to(ages, {
+            x: -50,
+            duration: 1,
+            stagger: 0.7,
+            ease: "power3.inOut"
+        });
+        (0, _all.ScrollTrigger).create({
+            animation: animationAges,
+            containerAnimation: scrollTween,
+            pinSpacing: false,
+            trigger: ".mapdiff",
+            start: "left center",
+            markers: true,
             end: "+=200"
         });
     };

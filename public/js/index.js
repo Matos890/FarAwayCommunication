@@ -38,7 +38,7 @@ const imageSources = [
   "/img/1871Telegraph lines.jpg",
   "/img/1880Telegraph lines.jpg",
   "/img/1901Telegraph lines.jpg",
-  "/img/caricaturebackground.png"
+  "/img/caricaturebackground.png",
 ];
 
 const images = [];
@@ -249,7 +249,6 @@ preloadImages(imageSources, () => {
       scrub: 1,
       pinSpacing: false,
       invalidateOnRefresh: true,
-      markers: true,
       start: "center center",
       end: "+=20000",
       onUpdate: () => {
@@ -322,6 +321,34 @@ preloadImages(imageSources, () => {
       trigger: ".p-03", // L'elemento che fa scattare lo ScrollTrigger
       start: "left center",
 
+      end: "+=200", // Quando deve iniziare l'animazione
+      // markers: true  // Mostrare i markers per il debug
+    });
+
+    const tl1 = gsap.timeline();
+    const ages = gsap.utils.toArray(".ageMap ");
+    const animationAges = tl1
+      .from(ages, {
+        y: -50,
+        opacity:0,
+        duration: 1,
+        stagger: 0.7,
+        ease: "power3.inOut",
+      })
+      .to(ages, {
+        x: -50,
+        duration: 1,
+        stagger: 0.7,
+        ease: "power3.inOut",
+      });
+
+    ScrollTrigger.create({
+      animation: animationAges, // La timeline da collegare
+      containerAnimation: scrollTween,
+      pinSpacing: false,
+      trigger: ".mapdiff", // L'elemento che fa scattare lo ScrollTrigger
+      start: "left center",
+      markers: true,
       end: "+=200", // Quando deve iniziare l'animazione
       // markers: true  // Mostrare i markers per il debug
     });

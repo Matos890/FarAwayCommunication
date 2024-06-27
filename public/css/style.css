@@ -16,7 +16,7 @@ html {
 }
 body {
   line-height: 1.5;
-  /* height: 5000px !important; */
+  height: 21000px !important;
   overflow-x: hidden !important;
 }
 .libre-baskerville-regular {
@@ -70,6 +70,7 @@ article {
   height: auto;
 }
 .scroller {
+  display: flex;
   height: fit-content;
 }
 #myCanvas {
@@ -149,7 +150,7 @@ article {
   z-index: 3;
   display: flex;
   width: 100%;
-  
+
   align-items: center;
   justify-content: center;
   color: #ebecdc;
@@ -237,10 +238,10 @@ p > .page {
   height: 100vh;
   aspect-ratio: 2;
 }
-.bookmarkFrame1{
-  height:100vh;
+.bookmarkFrame1 {
+  height: 100vh;
   aspect-ratio: 0.5;
-  top:0;
+  top: 0;
 }
 .bookmarkFrame2 {
   height: 100vh;
@@ -255,7 +256,7 @@ p > .page {
 /* background */
 .backgroundContainer {
   position: absolute;
-  width:0%;
+  width: 0%;
 }
 .frame5 {
   height: 65vh;
@@ -327,7 +328,7 @@ circle {
 
 .backgroundContainerEM {
   position: absolute;
-  width:50%;
+  width: 50%;
 }
 .frame2 {
   height: 65vh;
@@ -385,7 +386,7 @@ circle {
 }
 .backgroundContainerEM1 {
   position: absolute;
-  width:36%;
+  width: 36%;
 }
 
 .backgroundEM1 {
@@ -423,10 +424,10 @@ circle {
 .ov1Mr {
   z-index: 2;
   opacity: 0.68;
-  background-color:#605a20;
+  background-color: #605a20;
 }
-.gifMorse{
-  height:65vh;
+.gifMorse {
+  height: 65vh;
   aspect-ratio: 1;
 }
 /* PAGINA 1 */
@@ -449,17 +450,16 @@ circle {
 }
 .backgroundContainerMr {
   position: absolute;
-  width:100%;
+  width: 100%;
 }
 
 .backgroundMr {
   position: relative;
   aspect-ratio: 1.48;
-  height: 60vh;
+  height: 80vh;
   opacity: 0.21;
 }
-.frame9{
-
+.frame9 {
   height: 50vh;
   aspect-ratio: 1.7;
   image-rendering: crisp-edges;
@@ -467,24 +467,22 @@ circle {
 }
 .backgroundContainerMr1 {
   position: absolute;
-  width:70%;
+  width: 70%;
 }
 
 .backgroundMr1 {
   position: relative;
   aspect-ratio: 1.48;
-  height: 60vh;
+  height: 70vh;
   opacity: 0.21;
 }
-.frame9{
-
+.frame9 {
   height: 50vh;
   aspect-ratio: 1.7;
   image-rendering: crisp-edges;
   filter: blur(0.5px);
 }
-.frame10{
-
+.frame10 {
   height: 80vh;
   aspect-ratio: 1.7;
   image-rendering: crisp-edges;
@@ -496,7 +494,7 @@ circle {
 
 .backgroundContainerD {
   position: absolute;
-  width:53%;
+  width: 53%;
 }
 
 .backgroundD {
@@ -505,8 +503,7 @@ circle {
   height: 60vh;
   opacity: 0.21;
 }
-.frame11{
-
+.frame11 {
   height: 100vh;
   aspect-ratio: 2.3;
   image-rendering: crisp-edges;
@@ -521,7 +518,7 @@ circle {
 .ov2D {
   z-index: 2;
   opacity: 0.86;
-  background-color:#093f16;
+  background-color: #093f16;
 }
 .bookmarkFrame4 {
   height: 100vh;
@@ -537,7 +534,6 @@ circle {
 }
 .svg2 {
   width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .containerFramed {
   display: flex;
@@ -546,14 +542,14 @@ circle {
   width: fit-content;
   justify-content: space-between;
 }
-.frame12{
-
+.frame12 {
   height: 30vh;
   aspect-ratio: 0.84;
   image-rendering: crisp-edges;
   filter: blur(0.5px);
 }
-.controlTextDiffusion, .controlTextDiffusion1{
+.controlTextDiffusion,
+.controlTextDiffusion1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -565,20 +561,19 @@ circle {
   width: fit-content;
   justify-content: space-between;
 }
-.frame13{
-
+.frame13 {
   height: 30vh;
   aspect-ratio: 2;
   image-rendering: crisp-edges;
   filter: blur(0.5px);
 }
-.controlSvg2{
+.controlSvg2 {
   display: flex;
 }
-.mapDif{
-
-  height: 65vh;
+.mapDif {
+  height: 80vh;
   aspect-ratio: 1.28;
+  width: 135%;
 }
 .containerFramedM {
   display: flex;
@@ -587,20 +582,18 @@ circle {
   width: fit-content;
   justify-content: space-between;
 }
-.frame14{
-
+.frame14 {
   height: 70vh;
   aspect-ratio: 2;
   image-rendering: crisp-edges;
-  filter: blur(0.5px) ;
-  border: solid 0.5vw #093f16;;
+  filter: blur(0.5px);
+  border: solid 0.5vw #093f16;
 }
-.frame15{
-
+.frame15 {
   height: 70vh;
   aspect-ratio: 2;
   image-rendering: crisp-edges;
-  filter: blur(0.5px) ;
+  filter: blur(0.5px);
   border: solid 0.5vw #093f16;
 }
 .containerFramed2 {
@@ -610,12 +603,11 @@ circle {
   width: fit-content;
   justify-content: space-between;
 }
-.frame16{
-
+.frame16 {
   height: 70vh;
   aspect-ratio: 2;
   image-rendering: crisp-edges;
-  filter: blur(0.5px) ;
+  filter: blur(0.5px);
   border: solid 0.5vw #093f16;
 }
 .containerFramed3 {
@@ -627,12 +619,16 @@ circle {
 }
 .backgroundContainerMr12 {
   position: absolute;
-  width:46%;
+  width: 54%;
 }
-.textMapAge{
+.textMapAge {
   flex-direction: column;
 }
-.controlTextDif{
+.controlTextDif {
   width: 100%;
+}
 
+.ageMap {
+  font-size: 4vh;
+  z-index: -3;
 }
