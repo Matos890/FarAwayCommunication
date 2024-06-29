@@ -11,7 +11,7 @@ picture {
 }
 html {
   font-size: 10px;
-  background-color: #d0c8a4;
+  background-color: #fefce3;
   height: fit-content;
 }
 body {
@@ -62,6 +62,10 @@ picture {
   max-width: 100%;
   display: block;
 }
+.flexRow{
+  display: flex;
+  flex-direction: row;
+}
 article {
   margin-bottom: 2vh;
 }
@@ -75,10 +79,157 @@ section {
   /* display: flex; */
   height: auto;
 }
+
+
+/* COVERART */
+.backgroundCov{
+  grid-row: 1/-1;
+  grid-column: 1/-1;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+}
+.naveContainer{
+  grid-column: 8/-1;
+  grid-row: 6;
+  display: flex;
+  justify-content: end;
+}
+.controlNave{
+  width: 100%;
+}
+.imgNave{
+  width: 100%;
+  height: 100%;
+}
+.controlImgDiag1{
+  grid-row: 1/4;
+  grid-column: 1/8;
+  position: relative;
+  z-index: -2;
+  opacity: 0.5;
+
+}
+.controlImgDiag2{
+  grid-row: 5/-1;
+  grid-column: 1/8;
+  position: relative;
+  z-index: -2;
+opacity: 0.5;
+}
+.diagCo{
+  position: absolute;
+  top: 0;
+  width: 500rem;
+  rotate: -6deg;
+  left: -84rem;
+  height: 17rem;
+}
+.controlGrid{
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+}
+.gridContainer {  display: grid;
+  grid-template-columns:1fr  1fr 1fr 15rem 15rem 15rem 15rem 15rem 15rem 1fr 1fr 1fr ;
+  grid-template-rows:1fr 15rem 15rem 15rem 15rem 1fr ;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  width: 100vw;
+  height: 100vh;
+}
+
+.circleContainer { grid-area: 2 / 5 / 6 / 9; }
+.circleRed, .squareRed, .telegraphBlack, .titleCover{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 6rem;
+  font-family: 'libre baskerville';
+}
+.titleContainer{
+  display: flex;
+  width: 160%;
+  justify-content: center;
+}
+.titleCover{
+  align-items: center;
+}
+.telegraphBlack{
+  align-items: center;
+  height: 56%;
+  width: 128%;
+}
+.telegraphImg{
+  width: 400%;
+}
+.squareContainer { grid-area: 2 / 4 / 4 / 6; display: flex; align-items: center; }
+.squareRed{
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.torpedoFish{
+  z-index: 2;
+  mix-blend-mode: darken;
+  width: 80%;
+  height: 80%;
+}
+.rectangleCov{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.telegraphContainer { grid-area: 4 / 7 / 6 / 10; }
+
+.titleContainer { grid-area: 2 / 6 / 4 / 9; }
+
+/* .controlCoverCenter{
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+.controlInsideCenter{
+  width: 33%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.circleRed{
+width: 100%;
+height: 100%;
+}
+.imgCircle{
+  width: 100%;
+}
+.controlSquare{
+  position: absolute;
+} */
 /* INTRO */
+.introSection{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 2;
+  width: 100vw;
+}
 .coverArt{
   display: flex;
   height: 100vh;
+  position: absolute;
+  aspect-ratio: 2;
+  opacity: 0.3;
 }
 .contentControl {
   height: 100vh;

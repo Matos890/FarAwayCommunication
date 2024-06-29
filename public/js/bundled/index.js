@@ -786,7 +786,7 @@ preloadImages(imageSources, ()=>{
             trigger: ".sectioni",
             // markers:true,
             pin: true,
-            scrub: 1,
+            scrub: 5,
             pinSpacing: false,
             invalidateOnRefresh: true,
             start: "center center",
