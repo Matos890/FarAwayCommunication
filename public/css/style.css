@@ -213,7 +213,56 @@ section {
 .titleContainer {
   grid-area: 2 / 6 / 4 / 9;
 }
+@media(width <= 1280px){
+.gridContainer{
+  grid-template-columns: 1fr 1fr 1fr 10rem 10rem 10rem 10rem 10rem 10rem 1fr 1fr 1fr;
+  grid-template-rows: 1fr 10rem 10rem 10rem 10rem 1fr;
+}
+.titleCover{
+  font-size: 4rem;
+}
+} 
+  
+@media(width <= 800px){
 
+.gridContainer{
+  grid-template-columns: 1fr 1fr 1fr 8rem 8rem 8rem 8rem 8rem 8rem 1fr 1fr 1fr;
+  grid-template-rows: 1fr 8rem 8rem 8rem 8rem 1fr;
+}
+.titleCover{
+  font-size: 3rem;
+}
+}
+@media(width <= 660px){
+
+.gridContainer{
+  grid-template-columns: 1fr 1fr 1fr 5rem 5rem 5rem 5rem 5rem 5rem 1fr 1fr 1fr;
+  grid-template-rows: 1fr 5rem 5rem 5rem 5rem 1fr;
+}
+.titleCover{
+  font-size: 1.5rem;
+}
+}
+@media(width <= 390px){
+
+.gridContainer{
+  grid-template-columns: 1fr 1fr 1fr 4rem 4rem 4rem 4rem 4rem 4rem 1fr 1fr 1fr;
+  grid-template-rows: 1fr 4rem 4rem 4rem 4rem 1fr;
+}
+.titleCover{
+  font-size: 1.5rem;
+}
+}
+@media(width <= 320px){
+
+.gridContainer{
+  grid-template-columns: 1fr 1fr 1fr 3rem 3rem 3rem 3rem 3rem 3rem 1fr 1fr 1fr;
+  grid-template-rows: 1fr 3rem 3rem 3rem 3rem 1fr;
+}
+.titleCover{
+  font-size: 1.2rem;
+}
+}
 /* .controlCoverCenter{
   position: absolute;
   height: 100vh;
