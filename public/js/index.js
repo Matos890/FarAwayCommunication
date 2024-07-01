@@ -7,10 +7,17 @@ const cover = require("canvas-image-cover");
 const canvas = document.getElementById("myCanvas");
 const canvas1 = document.getElementById("myCanvas1");
 const frame = document.querySelectorAll("[class^='frame']");
+const body = document.querySelector('body')
 const bookmarkFrame = document.querySelectorAll("[class^='bookmarkFrame']");
 const frame1 = document.querySelector(".frame1");
+const sectionz = document.querySelectorAll("section");
 const ctx = canvas.getContext("2d");
+const coverArtSection = document.querySelector(".coverArtSection");
+const introSection = document.querySelector(".introSection");
+const mainWrapper = document.querySelector(".mainWrapper");
+const whiteSpace = document.querySelectorAll(".whiteSpace");
 const ctx1 = canvas1.getContext("2d");
+const scroller = document.querySelectorAll(".scroller");
 ctx.globalCompositeOperation = "source-over";
 bookmarkFrame.forEach((bookmark) => {
   console.log(bookmark);
@@ -140,10 +147,24 @@ function draw() {
   {
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
+
     canvas.setAttribute("width", screenWidth);
     canvas.setAttribute("height", screenHeight);
     canvas1.setAttribute("width", screenWidth);
     canvas1.setAttribute("height", screenHeight);
+
+    let totalWidth = 0;
+    scroller.forEach((section) => {
+      totalWidth += section.offsetHeight;
+    });
+let ratioWH = coverArtSection.offsetWidth/coverArtSection.offsetHeight;
+console.log(ratioWH)
+    totalWidth =
+      
+      (mainWrapper.offsetWidth/ratioWH) + (coverArtSection.offsetHeight * 3) - (coverArtSection.offsetHeight  );
+      document.body.style.height = totalWidth + 'px';
+      // body.setAttribute('height', totalWidth)
+    console.log("width of sectionz", totalWidth);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
     const {
@@ -224,6 +245,88 @@ preloadImages(imageSources, () => {
     ({ positionContainer1X, gifX, positionContainer2X, endTrigger, distance } =
       calculatePositionsGif());
   });
+  ///OPENING
+  const tlOpening = gsap.timeline();
+  tlOpening.add("diagonali");
+  tlOpening.addLabel("redTel");
+  tlOpening
+    .from(
+      ".imgDiag1",
+      {
+        x: 2000,
+        duration: 5,
+        ease: "power1.inOut",
+        filter: "blur(3px)",
+      },
+      "diagonali"
+    )
+    .from(
+      ".imgDiag2",
+      {
+        x: 2000,
+        duration: 5,
+        filter: "blur(3px)",
+      },
+      "diagonali"
+    )
+    .from(
+      ".imgRed",
+      {
+        duration: 2,
+        ease: "circ.in",
+        scale: 0,
+      },
+      "diagonali"
+    )
+    .from(
+      ".titleContainer",
+      {
+        x: 300,
+        opacity: 0,
+        duration: 3,
+        ease: "power3.out",
+      },
+      "diagonali+=2"
+    )
+    .from(
+      ".squareContainer",
+      {
+        x: 200,
+        opacity: 0,
+        ease: "power3.out",
+      },
+      "diagonali+=2"
+    )
+    .from(
+      ".torpedoFish",
+      {
+        x: 200,
+        duration: 3,
+        opacity: 0,
+      },
+      "diagonali+=2"
+    )
+    .from(
+      ".naveContainer",
+      {
+        x: 1200,
+        duration: 4,
+        ease: "power3.inOut",
+      },
+      "diagonali"
+    )
+    .from(
+      ".telegraphImg",
+      {
+        duration: 2,
+        ease: "circ.in",
+        // scale:0,
+        opacity: 0,
+      },
+      "diagonali+=3"
+    );
+
+  //MAIN SECTIONS
   gsap.from(".titoloChappe", {
     opacity: 0,
     y: "3vh",
@@ -250,7 +353,7 @@ preloadImages(imageSources, () => {
       pinSpacing: false,
       invalidateOnRefresh: true,
       start: "center center",
-      end: "+=20000",
+      end:()=> `+=${(mainWrapper.offsetWidth/(coverArtSection.offsetWidth/coverArtSection.offsetHeight))}`,
       onUpdate: () => {
         requestAnimationFrame(draw);
       },
@@ -330,7 +433,7 @@ preloadImages(imageSources, () => {
     const animationAges = tl1
       .from(ages, {
         y: -50,
-        opacity:0,
+        opacity: 0,
         duration: 1,
         stagger: 0.7,
         ease: "power3.inOut",
@@ -348,7 +451,7 @@ preloadImages(imageSources, () => {
       pinSpacing: false,
       trigger: ".mapdiff", // L'elemento che fa scattare lo ScrollTrigger
       start: "left center",
-      markers: true,
+      // markers: true,
       end: "+=200", // Quando deve iniziare l'animazione
       // markers: true  // Mostrare i markers per il debug
     });

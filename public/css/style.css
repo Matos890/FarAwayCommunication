@@ -16,7 +16,7 @@ html {
 }
 body {
   line-height: 1.5;
-  height: 21750px !important;
+  /* height: 26865px !important; */
   overflow-x: hidden !important;
 }
 .libre-baskerville-regular {
@@ -62,7 +62,7 @@ picture {
   max-width: 100%;
   display: block;
 }
-.flexRow{
+.flexRow {
   display: flex;
   flex-direction: row;
 }
@@ -80,105 +80,124 @@ section {
   height: auto;
 }
 
-
 /* COVERART */
-.backgroundCov{
+.backgroundCov {
   grid-row: 1/-1;
   grid-column: 1/-1;
   z-index: -3;
   width: 100%;
   height: 100%;
 }
-.naveContainer{
+.naveContainer {
   grid-column: 8/-1;
-  grid-row: 6;
+  grid-row: 5/ -1;
   display: flex;
   justify-content: end;
+  z-index: 2;
 }
-.controlNave{
+.controlNave {
   width: 100%;
 }
-.imgNave{
+.imgNave {
   width: 100%;
   height: 100%;
 }
-.controlImgDiag1{
+.controlImgDiag1 {
   grid-row: 1/4;
   grid-column: 1/8;
   position: relative;
   z-index: -2;
   opacity: 0.5;
-
 }
-.controlImgDiag2{
+.controlImgDiag2 {
   grid-row: 5/-1;
   grid-column: 1/8;
   position: relative;
   z-index: -2;
-opacity: 0.5;
+  opacity: 0.5;
 }
-.diagCo{
+.diagCo {
   position: absolute;
   top: 0;
   width: 500rem;
   rotate: -6deg;
-  left: -84rem;
+  left: -200rem;
   height: 17rem;
 }
-.controlGrid{
+.imgDiag1 {
+  filter: blur(0px);
+  transform-origin: bottom right;
+}
+.controlGrid {
   display: flex;
   align-items: center;
   height: 100vh;
   justify-content: center;
 }
-.gridContainer {  display: grid;
-  grid-template-columns:1fr  1fr 1fr 15rem 15rem 15rem 15rem 15rem 15rem 1fr 1fr 1fr ;
-  grid-template-rows:1fr 15rem 15rem 15rem 15rem 1fr ;
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 15rem 15rem 15rem 15rem 15rem 15rem 1fr 1fr 1fr;
+  grid-template-rows: 1fr 15rem 15rem 15rem 15rem 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
-.circleContainer { grid-area: 2 / 5 / 6 / 9; }
-.circleRed, .squareRed, .telegraphBlack, .titleCover{
+.circleContainer {
+  grid-area: 2 / 5 / 6 / 9;
+}
+.circleRed,
+.squareRed,
+.telegraphBlack,
+.titleCover {
   display: flex;
   justify-content: center;
   width: 100%;
   height: 100%;
   font-size: 6rem;
-  font-family: 'libre baskerville';
+  font-family: "libre baskerville";
 }
-.titleContainer{
+.imgRed {
+  z-index: -1;
+}
+.titleContainer {
   display: flex;
   width: 160%;
   justify-content: center;
 }
-.titleCover{
+.titleCover {
   align-items: center;
 }
-.telegraphBlack{
+.telegraphBlack {
   align-items: center;
   height: 56%;
   width: 128%;
+  transform-origin: left center;
 }
-.telegraphImg{
+.telegraphImg {
   width: 400%;
+  transform-origin: top left;
 }
-.squareContainer { grid-area: 2 / 4 / 4 / 6; display: flex; align-items: center; }
-.squareRed{
+.squareContainer {
+  grid-area: 2 / 4 / 4 / 6;
+  display: flex;
+  align-items: center;
+}
+.squareRed {
   align-items: center;
   width: 100%;
   height: 100%;
   position: relative;
 }
-.torpedoFish{
+.torpedoFish {
   z-index: 2;
   mix-blend-mode: darken;
   width: 80%;
   height: 80%;
 }
-.rectangleCov{
+.rectangleCov {
   position: absolute;
   top: 0;
   left: 0;
@@ -187,9 +206,13 @@ opacity: 0.5;
   width: 100%;
 }
 
-.telegraphContainer { grid-area: 4 / 7 / 6 / 10; }
+.telegraphContainer {
+  grid-area: 4 / 7 / 6 / 10;
+}
 
-.titleContainer { grid-area: 2 / 6 / 4 / 9; }
+.titleContainer {
+  grid-area: 2 / 6 / 4 / 9;
+}
 
 /* .controlCoverCenter{
   position: absolute;
@@ -216,7 +239,7 @@ height: 100%;
   position: absolute;
 } */
 /* INTRO */
-.introSection{
+.introSection {
   position: relative;
   display: flex;
   align-items: center;
@@ -224,7 +247,7 @@ height: 100%;
   aspect-ratio: 2;
   width: 100vw;
 }
-.coverArt{
+.coverArt {
   display: flex;
   height: 100vh;
   position: absolute;
@@ -261,17 +284,17 @@ height: 100%;
   margin-bottom: 1vh;
 }
 @media (aspect-ratio< 0.99) {
- .containerIntro{
-  justify-content: center;
- } 
+  .containerIntro {
+    justify-content: center;
+  }
   .containerIntroText {
     height: 55vh;
     font-size: 1.5vh;
     order: 2;
   }
-  .contentFrameIntro{
+  .contentFrameIntro {
     height: 50vh;
-    order:1;
+    order: 1;
   }
 }
 
